@@ -35,19 +35,17 @@
 </head>
 <body>
 
-    <!-- Mavzular tanlash oynasi -->
     <div id="start-screen" class="card">
-        <h1>📚 9-Sinf Jahon Tarixi</h1>
+        <h1>9-Sinf Jahon Tarixi</h1>
         <p class="subtitle" id="welcome-text">Mavzuni tanlang va bilimingizni tekshiring!</p>
         <div id="topic-list" class="topic-list"></div>
     </div>
 
-    <!-- Test oynasi -->
     <div id="quiz-screen" class="card hidden">
         <div class="header">
             <span id="topic-badge" class="badge">Mavzu</span>
             <span id="question-count" class="badge">1 / 1</span>
-            <span id="timer" class="badge">⏱ 00:00</span>
+            <span id="timer" class="badge">00:00</span>
         </div>
         <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
         <div id="question-text" class="question-text"></div>
@@ -57,9 +55,8 @@
         <button class="secondary-btn" onclick="goHome()">Mavzularga qaytish</button>
     </div>
 
-    <!-- Natija oynasi -->
     <div id="result-screen" class="card hidden">
-        <h1>🎉 Test yakunlandi!</h1>
+        <h1>Test yakunlandi!</h1>
         <p class="subtitle" id="result-topic"></p>
         <div class="score-circle">
             <div id="score-percent">0%</div>
@@ -75,8 +72,8 @@
         if (tg) {
             tg.expand();
             if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                document.getElementById('welcome-text').innerText =
-                    `Xush kelibsiz, ${tg.initDataUnsafe.user.first_name}! Mavzuni tanlang va testni boshlang.`;
+                document.getElementById("welcome-text").innerText =
+                    "Xush kelibsiz, " + tg.initDataUnsafe.user.first_name + "! Mavzuni tanlang va testni boshlang.";
             }
         }
 
@@ -110,7 +107,7 @@
                     { q: "Yangi tarix yakunining rasmiy sanasi sifatida qaysi yil va voqea qabul qilingan?", options: ["1789-yil - Bastiliyaning egallanishi", "1871-yil - Germaniya imperiyasining tuzilishi", "1918-yil - Birinchi jahon urushining yakunlanishi", "1945-yil - Ikkinchi jahon urushining yakunlanishi"], answer: 2, exp: "Maktab darsligiga ko'ra Yangi tarix Birinchi jahon urushi yakunlangan 1918-yilda tugaydi." },
                     { q: "Agrar sivilizatsiya iqtisodiyotining asosiy ishlab chiqarish shakllarini ko'rsating.", options: ["Fabrikalar, zavodlar va aksionerlik jamiyatlari", "Mashinali konlar, temiryo'llar va banklar", "Yollanma korxonalar va jahon birjalari", "Qishloq xo'jaligi, qo'l mehnati va hunarmandchilik sexlari"], answer: 3, exp: "Agrar sivilizatsiyaning iqtisodiy asosi qishloq xo'jaligi, qo'l mehnati va o'rta asr hunarmandchilik sexlaridan iborat edi." },
                     { q: "Qaysi javobda tarixiy hodisalar to'g'ri xronologik ketma-ketlikda joylashtirilgan?", options: ["Buyuk geografik kashfiyotlar -> Kapitalistik jamiyat shakllanishi -> Sanoat inqilobi -> Buyuk fransuz inqilobi", "Sanoat inqilobi -> Buyuk geografik kashfiyotlar -> Buyuk fransuz inqilobi -> Birinchi jahon urushi", "Buyuk fransuz inqilobi -> Kapitalistik jamiyat shakllanishi -> Buyuk geografik kashfiyotlar -> Sanoat inqilobi", "Birinchi jahon urushi -> Sanoat inqilobi -> Buyuk fransuz inqilobi -> Buyuk geografik kashfiyotlar"], answer: 0, exp: "Ketma-ketlik: XV asr oxiri kashfiyotlar -> XVI asr kapitalizm -> XVIII asr 60-yillari sanoat inqilobi -> XVIII asr oxiri Buyuk fransuz inqilobi." },
-                    { q: "Quyidagi fikrlardan qaysi biri «kapital» tushunchasiga mos keladi?", options: ["Faqat dehqonning shaxsiy iste'mol uchun yetishtirgan g'allasi", "O'zini o'zi ko'paytiruvchi sarmoya va egasiga daromad keltiruvchi xususiy mulk", "Feodallarning merosiy harbiy unvoni va tabaqaviy imtiyozi", "O'rta asr sex ustalarining diniy bayram jamg'armasi"], answer: 1, exp: "Kapital — egasiga daromad keltiruvchi xususiy mulk (fabrika, zavod, kon, bank) va o'zini o'zi ko'paytiruvchi sarmoyadir." }
+                    { q: "Quyidagi fikrlardan qaysi biri kapital tushunchasiga mos keladi?", options: ["Faqat dehqonning shaxsiy iste'mol uchun yetishtirgan g'allasi", "O'zini o'zi ko'paytiruvchi sarmoya va egasiga daromad keltiruvchi xususiy mulk", "Feodallarning merosiy harbiy unvoni va tabaqaviy imtiyozi", "O'rta asr sex ustalarining diniy bayram jamg'armasi"], answer: 1, exp: "Kapital — egasiga daromad keltiruvchi xususiy mulk (fabrika, zavod, kon, bank) va o'zini o'zi ko'paytiruvchi sarmoyadir." }
                 ]
             },
             "mavzu-1": {
@@ -118,8 +115,171 @@
                 meta: "8–11-betlar • 37 ta savol",
                 questions: [
                     { q: "XV asrda inqirozga uchragan karimiylar uyushmasi qaysi shahardagi ziravor savdosini nazorat qilgan?", options: ["Malakka", "Adan", "Kalikutta", "Surat"], answer: 1, exp: "Yamanning Adan shahridagi ziravor savdosini nazorat qilgan karimiylar uyushmasi XV asrda inqirozga uchradi va ularning o'rnini Gujorat savdogarlari egalladi." },
-                    { q: "XV asr o'rtalarida Okinava «savdo uchburchagi»da qatnagan xalqaro ekipajli kemalar qanday nomlangan?", options: ["«Jonka»", "«Karavella»", "«Galeon»", "«Fregat»"], answer: 0, exp: "Okinavaning «oltin davri»da (foyda 1000 foizgacha yetgan) xalqaro ekipajli «Jonka» kemalari qatnagan." },
+                    { q: "XV asr o'rtalarida Okinava savdo uchburchagida qatnagan xalqaro ekipajli kemalar qanday nomlangan?", options: ["Jonka", "Karavella", "Galeon", "Fregat"], answer: 0, exp: "Okinavaning oltin davrida (foyda 1000 foizgacha yetgan) xalqaro ekipajli Jonka kemalari qatnagan." },
                     { q: "1453-yili qaysi voqea yevropaliklarni Hindiston va Xitoyga yangi dengiz yo'llari izlashga majbur qildi?", options: ["Portugaliyaliklarning Madeyra orollarini kashf etishi", "Ispaniyada Rekonkistaning yakunlanishi", "Usmoniylarning Konstantinopolni zabt etishi", "Venetsiya flotining tor-mor etilishi"], answer: 2, exp: "1453-yili Usmoniylar Konstantinopolni zabt etib, O'rtayer dengizi va Buyuk Ipak yo'li orqali Sharq bilan savdoni to'sib qo'ydi." },
                     { q: "1419-yili portugaliyaliklar Atlantika okeanida qaysi orollarni kashf etdilar?", options: ["Azor orollarini", "Kanar orollarini", "Antil orollarini", "Madeyra orollarini"], answer: 3, exp: "1419-yili portugaliyalik dengizchilar Atlantika okeanidagi Madeyra orollarini kashf etdilar." },
-                    { q: "Xristofor Kolumb 1492-yil 3-avgustda qaysi uch karavellada yo'lga chiqqan?", options: ["«Santa-Mariya», «Pinta», «Ninya»", "«Viktoriya», «Trinidad», «Sant-Yago»", "«Santa-Mariya», «Viktoriya», «Pinta»", "«Ninya», «San-Gabriel», «Pinta»"], answer: 0, exp: "Xristofor Kolumb 1492-yil 3-avgustda «Santa-Mariya», «Pinta» va «Ninya» nomli uchta karavellada ekspeditsiyaga chiqqan." },
-                    { q: "Xristofor Kolumb ekspeditsiyasi 70 kunlik suzishdan so'ng 14
+                    { q: "Xristofor Kolumb 1492-yil 3-avgustda qaysi uch karavellada yo'lga chiqqan?", options: ["Santa-Mariya, Pinta, Ninya", "Viktoriya, Trinidad, Sant-Yago", "Santa-Mariya, Viktoriya, Pinta", "Ninya, San-Gabriel, Pinta"], answer: 0, exp: "Xristofor Kolumb 1492-yil 3-avgustda Santa-Mariya, Pinta va Ninya nomli uchta karavellada ekspeditsiyaga chiqqan." },
+                    { q: "Xristofor Kolumb ekspeditsiyasi 70 kunlik suzishdan so'ng 1492-yil 12-oktyabrda qaysi orolga yetib bordi?", options: ["Kuba oroliga", "San Salvador oroliga", "Yamayka oroliga", "Puerto Riko oroliga"], answer: 1, exp: "1492-yil 12-oktyabrda Kolumb San Salvador (Muqaddas Xaloskor) oroliga yetib bordi, so'ng Gaiti va Kubani ochdi." },
+                    { q: "Vasko da Gama 1498-yili Hindistonning Kalikutta portiga yetib borishda qaysi arab dengizchisining ko'magidan foydalangan?", options: ["Ibn Battuta", "Al-Mas'udiy", "Ahmad ibn Majid", "Sulaymon al-Mahriy"], answer: 2, exp: "Portugaliyalik Vasko da Gama Ezgu umid burnini aylanib, arab dengizchisi Ahmad ibn Majid yordamida 1498-yili Kalikutta portiga yetib bordi." },
+                    { q: "Kolumb kashf etgan yerlar Hindiston emas, balki yangi materik ekanligini isbotlagan florensiyalik dengizchi kim?", options: ["Bartolomeu Diash", "Pedro Kabral", "Xuan Elkano", "Amerigo Vespuchchi"], answer: 3, exp: "XV asr oxiri — XVI asr boshlarida florensiyalik Amerigo Vespuchchi Braziliya qirg'oqlarini tadqiq etib, bu yangi materik ekanini isbotladi va qit'a Amerika deb ataldi." },
+                    { q: "Fernando Magellan ekspeditsiyasining 253 nafar dengizchisidan 1522-yil 6-sentyabrda Ispaniyaga necha kishi qaytib keldi?", options: ["18 nafari", "36 nafari", "54 nafari", "72 nafari"], answer: 0, exp: "Magellan 1521-yili Filippinda halok bo'lgach, 1522-yil 6-sentyabrda 253 dengizchidan atigi 18 nafari Ispaniyaga qaytib, Yerning dumaloqligini amalda isbotladi." },
+                    { q: "1519-yili Amerikada yevropaliklar tomonidan asos solingan birinchi shahar qaysi?", options: ["Gavana", "Panama", "Lima", "Vera-Krus"], answer: 1, exp: "1519-yili Amerikada yevropaliklar qurgan birinchi shahar — Panamaga asos solindi." },
+                    { q: "Yevropaliklar bilan qora tanlilar nikohidan tug'ilgan avlod vakillari qanday nomlangan?", options: ["Metislar", "Kreollar", "Mulatlar", "Sambolar"], answer: 2, exp: "Yevropalik va hindu nikohidan tug'ilganlar — metis, XVII asr o'rtalaridan yevropalik va qora tanli nikohidan tug'ilganlar esa mulat deb atalgan." },
+                    { q: "1642-yili Avstraliyaning alohida qit'a ekanligini isbotlab, Yangi Zelandiyani kashf etgan sayyoh kim?", options: ["Luis Torres", "Villem Yanszon", "Jeyms Kuk", "Abel Tasman"], answer: 3, exp: "1605-yili Luis Torres Avstraliyani kashf etdi, 1606-yili Villem Yanszon uning qirg'og'iga suzib keldi, 1642-yili esa Abel Tasman Yangi Zelandiyani ochdi." },
+                    { q: "Buyuk geografik kashfiyotlarning asosiy iqtisodiy oqibatlaridan birini ko'rsating.", options: ["Savdo yo'llari O'rtayer dengizidan Atlantika okeaniga ko'chdi", "Venetsiya va Genuya jahon savdosida yakka hukmron bo'ldi", "Oltin va kumush narxi keskin ko'tarilib ketdi", "Yevropada natural xo'jalik mustahkamlandi"], answer: 0, exp: "Kashfiyotlar natijasida savdo yo'llari O'rtayer dengizidan Atlantika okeaniga ko'chdi, narx-navo inqilobi va jahon bozori shakllandi." },
+                    { q: "XV asrda karimiylar uyushmasi inqirozga uchragach, Adan va Malakka oralig'idagi yirik dengiz savdo tarmog'ini qaysi savdogarlar egalladi?", options: ["Hindistonning Gujorat savdogarlari", "Venetsiyaning dengiz savdogarlari", "Xitoyning Pekin savdogarlari", "Misrning Iskandariya savdogarlari"], answer: 0, exp: "Karimiylar inqirozidan so'ng Hindistonning Gujorat savdogarlari Adan va Malakka oralig'ida yirik savdo tarmog'ini tuzdi." },
+                    { q: "Gujorat savdogarlari Kambey va Surat portlaridan Sharq dengiz savdosiga asosan qaysi mahsulotni chiqargan?", options: ["Venetsiya shishasi va fil suyagi", "Gujorat paxta matosi", "Xitoy chinnisi va qalampirmunchoq", "Afrika oltini va Zanzibar qullari"], answer: 1, exp: "Adan–Malakka tarmog'ida Kambey va Surat portlari orqali Gujorat paxta matosi, Malakkadan esa ziravor, xitoy ipagi va chinni olib o'tilgan." },
+                    { q: "Okinava savdo uchburchagida savdo foydasi necha foizgacha yetib, bu davr orol tarixida qanday nom olgan?", options: ["200 foizgacha - kumush davri", "500 foizgacha - dengiz asri", "1000 foizgacha - Okinavaning oltin davri", "800 foizgacha - ipak davri"], answer: 2, exp: "XV asr o'rtalarida Okinava savdo uchburchagida foyda 1000 foizgacha yetgan va bu davr Okinavaning oltin davri deb atalgan." },
+                    { q: "Okinava savdo uchburchagining Janubiy yo'nalishiga qaysi mamlakat va orollar kirgan?", options: ["Yaponiya va Koreya", "Hindiston va Seylon", "Misr va Yaman", "Annam, Siam, Yava, Sumatra va Birma"], answer: 3, exp: "Okinava savdo uchburchagi Janub (Annam, Siam, Yava, Sumatra, Birma), Xitoy va Shimol (Yaponiya, Koreya)dan iborat bo'lgan." },
+                    { q: "XV-XVII asrlarda yevropaliklarga ochiq dengizda uzoq suzish imkonini bergan yelkanli kema turi qanday atalgan?", options: ["Karavella", "Jonka", "Galera", "Drakkar"], answer: 0, exp: "Karavella — XV–XVII asrlarda ochiq dengizda suzish imkonini bergan yelkanli kema; kartografiya, kompas va usturlob bilan birga kashfiyotlarga sharoit yaratdi." },
+                    { q: "Tarixiy geografiyada Levant atamasi qaysi hududni anglatadi?", options: ["Atlantika okeanining g'arbiy orollarini", "O'rtayer dengizining sharqiy hududlarini", "Hind okeanining janubiy qirg'oqlarini", "Boltiq dengizi bo'yidagi yerlarni"], answer: 1, exp: "Darslik izohiga ko'ra Levant — O'rtayer dengizining sharqiy hududlarini anglatadi." },
+                    { q: "Xristofor Kolumb 1492-yil 12-oktyabrda yetib borgan San Salvador nomining ma'nosi nima?", options: ["Yangi Hindiston", "Oltin qirg'oq", "Muqaddas Xaloskor", "Tinch qo'ltiq"], answer: 2, exp: "Kolumb 70 kunlik suzishdan so'ng 1492-yil 12-oktyabrda yetib borgan orolga San Salvador (Muqaddas Xaloskor) deb nom berdi." },
+                    { q: "Xristofor Kolumb 1492-yilgi birinchi ekspeditsiyasida San Salvadordan so'ng yana qaysi orollarni kashf etdi?", options: ["Yamayka va Trinidadni", "Puerto Riko va Mariana orollarini", "Filippin va Solomon orollarini", "Gaiti va Kubani"], answer: 3, exp: "Birinchi ekspeditsiyada Kolumb San Salvador orolidan so'ng Gaiti va Kubani kashf etib, mahalliy aholini hindular deb atadi." },
+                    { q: "Xristofor Kolumb 1493-1504-yillardagi 2-4-ekspeditsiyalari davomida qaysi hududlarni ochdi?", options: ["Kichik Antil, Puerto Riko, Yamayka, Trinidad, Markaziy Amerika va Janubiy Amerikaning shimoliy qirg'oqlarini", "Madeyra, Ezgu umid burni, Kalikutta va Seylonni", "Olovli Yer, Mariana, Filippin va Molukka orollarini", "Avstraliya, Yangi Zelandiya, Polineziya va Melaneziyani"], answer: 0, exp: "1493–1504-yillardagi uchta ekspeditsiyada Kolumb Kichik Antil, Puerto Riko, Yamayka, Trinidad, Markaziy Amerika va Janubiy Amerikaning shimoliy qirg'oqlarini ochdi." },
+                    { q: "Vasko da Gama ekspeditsiyasi 1499-yili Lissabonga qaytganida qanday yo'qotish va iqtisodiy natija qayd etildi?", options: ["Ekipajning yarmi halok bo'ldi, foyda 100 foizni tashkil etdi", "Ekipajning 2/3 qismi halok bo'ldi, ammo Lissabonda foyda 800 foizgacha yetdi", "Birorta ham dengizchi halok bo'lmadi, foyda 1000 foizga yetdi", "Barcha kemalar cho'kib, ekspeditsiya zarar bilan yakunlandi"], answer: 1, exp: "Vasko da Gama 1499-yili Portugaliyaga qaytdi: ekipajning 2/3 qismi halok bo'lganiga qaramay, olib kelingan ziravorlar Lissabonda 800 foizgacha foyda keltirdi." },
+                    { q: "Vasko da Gama Hindistonga borishda Afrikaning janubidagi qaysi burunni aylanib o'tgan?", options: ["Gorn burnini", "Chelyuskin burnini", "Ezgu umid burnini", "Yashil burunni"], answer: 2, exp: "Portugaliyalik Vasko da Gama Afrikaning janubidagi Ezgu umid burnini aylanib, Ahmad ibn Majid ko'magida 1498-yili Kalikuttaga yetib bordi." },
+                    { q: "Amerigo Vespuchchi XV asr oxiri - XVI asr boshlarida qaysi hudud qirg'oqlarini tadqiq etib, uning yangi materik ekanini isbotladi?", options: ["Kanada qirg'oqlarini", "Avstraliya qirg'oqlarini", "Meksika ko'rfazini", "Braziliya qirg'oqlarini"], answer: 3, exp: "Florensiyalik Amerigo Vespuchchi Braziliya qirg'oqlarini tadqiq etib, bu Hindiston emas, yangi materik ekanini isbotladi va qit'a Amerika deb ataldi." },
+                    { q: "Fernando Magellan ekspeditsiyasi qaysi sanada va qaysi davlat bayrog'i ostida yo'lga chiqqan?", options: ["1519-yil 20-sentyabrda Ispaniya bayrog'i ostida", "1492-yil 3-avgustda Portugaliya bayrog'i ostida", "1521-yil 6-martda Angliya bayrog'i ostida", "1498-yil 20-mayda Gollandiya bayrog'i ostida"], answer: 0, exp: "O'zi portugal bo'lgan Fernando Magellan 1519-yil 20-sentyabrda Ispaniya bayrog'i ostida dunyo bo'ylab ilk sayohatga chiqdi." },
+                    { q: "Fernando Magellan nima sababdan o'zi kesib o'tgan ulkan okeanga Tinch deb nom bergan?", options: ["Unda hech qanday orol uchramagani uchun", "Ekspeditsiya bu okeanda uch oy davomida birorta ham bo'ronga duch kelmay suzgani uchun", "Mahalliy xalqlar dengizchilarni tinch kutib olgani uchun", "Ispaniya qiroli shunday nom berishni buyurgani uchun"], answer: 1, exp: "Magellan bo'g'ozidan o'tgan ekspeditsiya 3 oy davomida bo'ronsiz suzgani sababli bu okeanga Tinch nomini berdi." },
+                    { q: "Magellan ekspeditsiyasi 1521-yil 6-martda qaysi orollarga yetib bordi va Magellan qayerda halok bo'ldi?", options: ["Kuba orollariga yetib bordi va Gaitida halok bo'ldi", "Solomon orollariga yetib bordi va Avstraliyada halok bo'ldi", "Mariana orollariga yetib bordi, so'ng Filippin orollarida jangda halok bo'ldi", "Madeyra orollariga yetib bordi va Seylonda halok bo'ldi"], answer: 2, exp: "1521-yil 6-martda Magellan Mariana, so'ng Filippin orollariga yetib bordi va u yerda mahalliy qabilalar bilan jangda halok bo'ldi." },
+                    { q: "Magellan Filippinda halok bo'lgach, tirik qolgan 18 dengizchi bilan Viktoriya kemasini Ispaniyaga olib qaytgan kapitan kim?", options: ["Luis Torres", "Villem Yanszon", "Amerigo Vespuchchi", "Xuan Sebastyan Elkano"], answer: 3, exp: "Bask dengizchisi, kapitan Xuan Sebastyan Elkano Viktoriya kemasini 18 nafar dengizchi bilan 1522-yil 6-sentyabrda Ispaniyaga olib qaytdi." },
+                    { q: "Magellan ekspeditsiyasining eng katta ilmiy natijasi nimadan iborat bo'ldi?", options: ["Yerning dumaloqligi amalda isbotlandi", "Antarktida qit'asi to'liq xaritaga tushirildi", "Hindistonga quruqlik yo'li ochildi", "Shimoliy qutb kashf etildi"], answer: 0, exp: "1519–1522-yillardagi ilk dunyo bo'ylab sayohat Yerning dumaloqligini amalda isbotlab berdi." },
+                    { q: "Amerikaning ichki hududlarini ispanlar tomonidan bosib olish jarayoni qanday nomlangan va qaysi davrni qamrab olgan?", options: ["Reformatsiya - 1492-yildan 1522-yilgacha", "Konkista - 1510-yildan XVII asr o'rtalarigacha", "Levant - 1453-yildan 1519-yilgacha", "Uniya - 1500-yildan 1605-yilgacha"], answer: 1, exp: "1510-yildan XVII asr o'rtalarigacha Amerikadagi ichki hududlarni bosib olish jarayoni tarixda konkista deb ataladi." },
+                    { q: "XVI asr 30-yillaridan boshlab dunyo qimmatbaho metallarining yarmini bera boshlagan oltin-kumush va mis konlari qaysi hududlarda joylashgan edi?", options: ["Kanada, Kuba va Gaitida", "Braziliya, Panama va Trinidad orolida", "Peru, Boliviya va Chilida", "Avstraliya, Yangi Zelandiya va Filippinda"], answer: 2, exp: "XVI asr 30-yillaridan Peru, Boliviya, Chili oltin-kumush va Peru mis konlari dunyo qimmatbaho metallarining yarmini yetkazib bera boshladi." },
+                    { q: "Yevropaliklar bilan mahalliy hindular nikohidan tug'ilgan avlod vakillari qanday nomlangan?", options: ["Mulatlar", "Gyozlar", "Karimiylar", "Metislar"], answer: 3, exp: "Yevropalik + hindu nikohidan tug'ilganlar metis, yevropalik + qora tanli nikohidan tug'ilganlar esa mulat (XVII asr o'rtalaridan) deb atalgan." },
+                    { q: "1605-yili Avstraliyani kashf etgan ispan dengizchisi va 1606-yili uning qirg'og'iga birinchi bo'lib suzib kelgan golland sayohatchisini toping.", options: ["Luis Torres va Villem Yanszon", "Abel Tasman va Vasko da Gama", "Fernando Magellan va Xuan Elkano", "Xristofor Kolumb va Amerigo Vespuchchi"], answer: 0, exp: "1605-yili ispan Luis Torres Avstraliyani kashf etdi; 1606-yili golland Villem Yanszon Avstraliya qirg'og'iga birinchi bo'lib suzib keldi." },
+                    { q: "XVI asr ikkinchi yarmi XVII asr boshlarida ispan dengizchilari Tinch okeanida qaysi hududlarni kashf etdilar?", options: ["Madeyra va Kanar orollarini", "Solomon orollari, Janubiy Polineziya va Melaneziyani", "Yangi Zelandiya va Tasmaniyani", "Kichik Antil va Yamayka orollarini"], answer: 1, exp: "XVI asr 2-yarmi — XVII asr boshlarida ispanlar Solomon orollari, Janubiy Polineziya va Melaneziyani ochdilar." },
+                    { q: "Buyuk geografik kashfiyotlardan so'ng Yevropada asosiy dengiz savdo yo'llari qayerdan qayerga ko'chdi?", options: ["Boltiq dengizidan Qora dengizga", "Tinch okeanidan Hind okeaniga", "O'rtayer dengizidan Atlantika okeaniga", "Shimoliy dengizdan O'rtayer dengiziga"], answer: 2, exp: "Kashfiyotlar oqibatida asosiy savdo yo'llari O'rtayer dengizidan Atlantika okeaniga ko'chdi, jahon bozori shakllandi." },
+                    { q: "Magellan ekspeditsiyasi Tinch okeaniga chiqishda qaysi ikki hudud orasidagi bo'g'ozdan o'tgan?", options: ["Shimoliy Amerika bilan Grenlandiya orasidagi", "Osiyo bilan Alyaska orasidagi", "Avstraliya bilan Yangi Gvineya orasidagi", "Janubiy Amerika bilan Olovli Yer orasidagi"], answer: 3, exp: "Magellan Amerika bilan Olovli Yer orasidagi bo'g'ozdan (keyinchalik Magellan bo'g'ozi deb atalgan) o'tib, Tinch okeaniga chiqdi." }
+                ]
+            }
+        };
+
+        let activeTopicKey = null;
+        let currentIndex = 0;
+        let score = 0;
+        let seconds = 0;
+        let timerInterval = null;
+        let answered = false;
+
+        function renderTopics() {
+            const list = document.getElementById("topic-list");
+            list.innerHTML = "";
+            Object.entries(quizData).forEach(([key, topic]) => {
+                const btn = document.createElement("button");
+                btn.className = "topic-btn";
+                btn.innerHTML = `<div class="topic-title">${topic.title}</div><div class="topic-meta">${topic.meta}</div>`;
+                btn.onclick = () => startTopic(key);
+                list.appendChild(btn);
+            });
+        }
+
+        function startTopic(key) {
+            activeTopicKey = key;
+            currentIndex = 0;
+            score = 0;
+            seconds = 0;
+
+            document.getElementById("start-screen").classList.add("hidden");
+            document.getElementById("result-screen").classList.add("hidden");
+            document.getElementById("quiz-screen").classList.remove("hidden");
+            document.getElementById("topic-badge").innerText = quizData[key].title.split(":")[0];
+
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                seconds++;
+                const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
+                const secs = String(seconds % 60).padStart(2, "0");
+                document.getElementById("timer").innerText = `${mins}:${secs}`;
+            }, 1000);
+
+            showQuestion();
+        }
+
+        function restartTopic() {
+            if (activeTopicKey) startTopic(activeTopicKey);
+        }
+
+        function goHome() {
+            clearInterval(timerInterval);
+            document.getElementById("quiz-screen").classList.add("hidden");
+            document.getElementById("result-screen").classList.add("hidden");
+            document.getElementById("start-screen").classList.remove("hidden");
+        }
+
+        function showQuestion() {
+            answered = false;
+            const qs = quizData[activeTopicKey].questions;
+            const item = qs[currentIndex];
+
+            document.getElementById("question-count").innerText = `${currentIndex + 1} / ${qs.length}`;
+            document.getElementById("progress").style.width = `${(currentIndex / qs.length) * 100}%`;
+            document.getElementById("question-text").innerText = `${currentIndex + 1}. ${item.q}`;
+            document.getElementById("explanation-box").classList.add("hidden");
+            document.getElementById("next-btn").classList.add("hidden");
+
+            const optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+            const letters = ["A", "B", "C", "D"];
+
+            item.options.forEach((opt, idx) => {
+                const btn = document.createElement("button");
+                btn.className = "option-btn";
+                btn.innerText = `${letters[idx]}) ${opt}`;
+                btn.onclick = () => selectAnswer(idx, btn);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(selectedIdx, btn) {
+            if (answered) return;
+            answered = true;
+
+            const item = quizData[activeTopicKey].questions[currentIndex];
+            const allBtns = document.querySelectorAll(".option-btn");
+
+            if (selectedIdx === item.answer) {
+                btn.classList.add("correct");
+                score++;
+            } else {
+                btn.classList.add("wrong");
+                allBtns[item.answer].classList.add("correct");
+            }
+
+            const expBox = document.getElementById("explanation-box");
+            expBox.innerText = `Izoh: ${item.exp}`;
+            expBox.classList.remove("hidden");
+
+            const qs = quizData[activeTopicKey].questions;
+            const nextBtn = document.getElementById("next-btn");
+            nextBtn.innerText = currentIndex === qs.length - 1 ? "Natijani ko'rish" : "Keyingi savol";
+            nextBtn.classList.remove("hidden");
+        }
+
+        function nextQuestion() {
+            const qs = quizData[activeTopicKey].questions;
+            currentIndex++;
+            if (currentIndex < qs.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            clearInterval(timerInterval);
+            document.getElementById("quiz-screen").classList.add("hidden");
+            document.getElementById("result-screen").classList.remove("hidden");
+
+            const qs = quizData[activeTopicKey].questions;
+            const percent = Math.round((score / qs.length) * 100);
+            document.getElementById("result-topic").innerText = quizData[activeTopicKey].title;
+            document.getElementById("score-percent").innerText = `${percent}%`;
+            document.getElementById("score-text").innerText = `${score} / ${qs.length} to'g'ri`;
+            document.getElementById("time-spent").innerText = `Sarflangan vaqt: ${seconds} soniya`;
+        }
+
+        renderTopics();
+    </script>
+</body>
+</html>
