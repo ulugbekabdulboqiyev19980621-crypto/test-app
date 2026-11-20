@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>9-Sinf Jahon Tarixi — Test Ilovasi</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: #f0f2f5; color: #1c1e21; padding: 14px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        .card { background: #fff; width: 100%; max-width: 520px; border-radius: 16px; padding: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); margin-bottom: 16px; }
+        h1 { font-size: 21px; margin-bottom: 6px; text-align: center; }
+        .subtitle { text-align: center; color: #65676b; margin-bottom: 18px; font-size: 14px; line-height: 1.4; }
+        .topic-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+        .topic-btn { background: #f7f8fa; border: 2px solid #e4e6eb; border-radius: 12px; padding: 13px 14px; text-align: left; cursor: pointer; transition: 0.2s; }
+        .topic-btn:hover, .topic-btn:active { border-color: #1877f2; background: #f0f7ff; }
+        .topic-title { font-weight: 600; font-size: 15px; color: #1c1e21; margin-bottom: 3px; }
+        .topic-meta { font-size: 12px; color: #65676b; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-size: 13px; font-weight: 600; gap: 8px; flex-wrap: wrap; }
+        .badge { background: #e7f3ff; color: #1877f2; padding: 5px 11px; border-radius: 20px; }
+        .progress-bar { width: 100%; height: 8px; background: #e4e6eb; border-radius: 4px; overflow: hidden; margin-bottom: 18px; }
+        .progress-fill { height: 100%; background: #1877f2; width: 0%; transition: width 0.3s ease; }
+        .question-text { font-size: 17px; font-weight: 600; margin-bottom: 16px; line-height: 1.45; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .option-btn { background: #f7f8fa; border: 2px solid #e4e6eb; border-radius: 12px; padding: 13px 15px; text-align: left; font-size: 15px; cursor: pointer; transition: 0.2s; color: #1c1e21; font-weight: 500; line-height: 1.35; }
+        .option-btn.correct { background: #e6f4ea; border-color: #34a853; color: #137333; }
+        .option-btn.wrong { background: #fce8e6; border-color: #ea4335; color: #c5221f; }
+        .explanation { margin-top: 14px; padding: 12px 14px; background: #f8f9fa; border-left: 4px solid #1877f2; border-radius: 8px; font-size: 14px; line-height: 1.45; color: #333; }
+        .primary-btn { width: 100%; background: #1877f2; color: #fff; border: none; border-radius: 12px; padding: 14px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 16px; }
+        .secondary-btn { width: 100%; background: #e4e6eb; color: #1c1e21; border: none; border-radius: 12px; padding: 12px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+        .hidden { display: none; }
+        .score-circle { width: 120px; height: 120px; border-radius: 50%; background: #e7f3ff; color: #1877f2; display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 18px auto; font-size: 28px; font-weight: 700; }
+        .score-circle span { font-size: 13px; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <!-- Mavzular tanlash oynasi -->
+    <div id="start-screen" class="card">
+        <h1>📚 9-Sinf Jahon Tarixi</h1>
+        <p class="subtitle" id="welcome-text">Mavzuni tanlang va bilimingizni tekshiring!</p>
+        <div id="topic-list" class="topic-list"></div>
+    </div>
+
+    <!-- Test oynasi -->
+    <div id="quiz-screen" class="card hidden">
+        <div class="header">
+            <span id="topic-badge" class="badge">Mavzu</span>
+            <span id="question-count" class="badge">1 / 1</span>
+            <span id="timer" class="badge">⏱ 00:00</span>
+        </div>
+        <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
+        <div id="question-text" class="question-text"></div>
+        <div id="options" class="options"></div>
+        <div id="explanation-box" class="explanation hidden"></div>
+        <button id="next-btn" class="primary-btn hidden" onclick="nextQuestion()">Keyingi savol</button>
+        <button class="secondary-btn" onclick="goHome()">Mavzularga qaytish</button>
+    </div>
+
+    <!-- Natija oynasi -->
+    <div id="result-screen" class="card hidden">
+        <h1>🎉 Test yakunlandi!</h1>
+        <p class="subtitle" id="result-topic"></p>
+        <div class="score-circle">
+            <div id="score-percent">0%</div>
+            <span id="score-text">0 / 0 to'g'ri</span>
+        </div>
+        <p class="subtitle" id="time-spent"></p>
+        <button class="primary-btn" onclick="restartTopic()">Qayta ishlash</button>
+        <button class="secondary-btn" onclick="goHome()">Boshqa mavzu tanlash</button>
+    </div>
+
+    <script>
+        const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+        if (tg) {
+            tg.expand();
+            if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+                document.getElementById('welcome-text').innerText =
+                    `Xush kelibsiz, ${tg.initDataUnsafe.user.first_name}! Mavzuni tanlang va testni boshlang.`;
+            }
+        }
+
+        const quizData = {
+            "kirish": {
+                title: "Kirish. Yangi davr tarixi: agrar jamiyatdan industrial sivilizatsiya sari",
+                meta: "5–6-betlar • 26 ta savol",
+                questions: [
+                    { q: "Agrar sivilizatsiya (an'anaviy jamiyat) qaysi davrdan boshlanib, qachongacha davom etgan?", options: ["Paleolit davridan XV asr oxirigacha", "Neolit davridan XVIII asrning 60-yillaridagi sanoat inqilobigacha", "Jez davridan XVII asr o'rtalaridagi inqiloblargacha", "Temir davridan XIX asr boshlarigacha"], answer: 1, exp: "Agrar sivilizatsiya neolit davridan boshlanib, XVIII asrning 60-yillaridagi sanoat inqilobigacha davom etgan." },
+                    { q: "Kapitalistik jamiyat XVI asrdan boshlab dastlab qaysi hududlarda shakllana boshladi?", options: ["G'arbiy Yevropa va Shimoliy Amerikada", "Sharqiy Yevropa va Lotin Amerikasida", "Yaqin Sharq va Shimoliy Afrikada", "Janubiy Osiyo va Sharqiy Yevropada"], answer: 0, exp: "XVI asrdan boshlab kapitalistik jamiyat dastlab G'arbiy Yevropa va Shimoliy Amerikada shakllandi." },
+                    { q: "Egasiga daromad keltiruvchi xususiy mulk (fabrika, zavod, kon, bank) va o'zini o'zi ko'paytiruvchi sarmoya nima deb ataladi?", options: ["Renta", "Manufaktura", "Kapital", "Monopoliya"], answer: 2, exp: "Kapital — egasiga daromad keltiruvchi xususiy mulk va o'zini o'zi ko'paytiruvchi sarmoya hisoblanadi." },
+                    { q: "Yangi davrda o'rta asr hunarmandchilik sexlari o'rnini dastlab qaysi ishlab chiqarish shakli egalladi?", options: ["Fabrikalar", "Konsernlar", "Sindikatlar", "Manufakturalar"], answer: 3, exp: "Yangi davr boshlarida o'rta asr sexlari o'rnini manufakturalar egalladi, sanoat inqilobidan so'ng esa fabrikalar vujudga keldi." },
+                    { q: "Sanoat inqilobi natijasida mashinalar qo'l mehnatini siqib chiqarib, manufakturalar o'rnini fabrikalar egallagan davrni ko'rsating.", options: ["XV asr oxiri - XVI asr boshlari", "XVI asr oxiri - XVII asr boshlari", "XVIII asr oxiri - XIX asr", "XX asrning birinchi yarmi"], answer: 2, exp: "XVIII asr oxiri — XIX asrdagi sanoat inqilobi tufayli mashinalar qo'l mehnatini siqib chiqarib, manufakturalar o'rnini fabrikalar egalladi." },
+                    { q: "Maktab darsligiga ko'ra Yangi tarix qaysi voqealar oralig'ini qamrab oladi?", options: ["Buyuk geografik kashfiyotlardan 1918-yilgacha", "Konstantinopol qulashidan 1914-yilgacha", "Reformatsiyadan 1945-yilgacha", "Angliya inqilobidan 1918-yilgacha"], answer: 0, exp: "Yangi tarix XV asr oxiri — XVI asr boshlaridagi Buyuk geografik kashfiyotlardan Birinchi jahon urushi yakuni — 1918-yilgacha davom etadi." },
+                    { q: "Yangi tarixning birinchi va ikkinchi bosqichlari o'rtasidagi chegara qaysi voqea hisoblanadi?", options: ["Angliya burjua inqilobi", "Buyuk fransuz burjua inqilobi", "AQSH Mustaqillik urushi", "O'ttiz yillik urush yakuni"], answer: 1, exp: "Yangi tarixning 1-bosqichi Buyuk geografik kashfiyotlardan XVIII asr oxiridagi Buyuk fransuz burjua inqilobigacha, 2-bosqichi XIX asr boshidan 1918-yilgacha davom etadi." },
+                    { q: "Yevropada industrial sivilizatsiyaning ma'naviy asosi bo'lib xizmat qilgan dunyoqarash qaysi?", options: ["Sxolastika", "Merkantilizm", "Konfutsiylik", "Gumanizm"], answer: 3, exp: "Yevropada gumanistik dunyoqarash industrial sivilizatsiyaning ma'naviy asosi bo'lib, shaxs erkinligi va tadbirkorlikka yo'l ochdi." },
+                    { q: "An'anaviy (agrar) jamiyat qaysi uch asosiy tayanchga suyanib rivojlangan?", options: ["Qishloq xo'jaligi, tabaqaviy bo'linish hamda qadimiy urf-odat va diniy tasavvurlar", "Mashinali sanoat, yollanma mehnat hamda parlamentar demokratiya", "Aksionerlik kompaniyalari, birjalar hamda xalqaro bank tizimi", "Erkin raqobat, ko'p partiyaviylik hamda dunyoviy konstitutsiya"], answer: 0, exp: "Agrar sivilizatsiya qishloq xo'jaligiga tayangan iqtisodiyot, tabaqaviy bo'linish, qadimiy urf-odatlar va diniy tasavvurlarga asoslangan davrdir." },
+                    { q: "Yangi tarix O'rta asrlardan eng avvalo qanday ma'naviy-ijtimoiy xususiyati bilan farq qiladi?", options: ["Tabaqaviy imtiyozlarning abadiylashtirilishi bilan", "Kishilarning tabiiy tengligi, shaxs erkinligi va inson tashabbuskorligiga keng yo'l ochilishi bilan", "Natural xo'jalikning barcha hududlarda hukmron bo'lishi bilan", "Cherkovning barcha dunyoviy ishlar ustidan mutlaq nazorati bilan"], answer: 1, exp: "Yangi tarix kishilarning tabiiy tengligi, shaxs erkinligi va sha'ni kabi demokratik tushunchalar hamda tadbirkorlikka keng yo'l ochilishi bilan ajralib turadi." },
+                    { q: "Kapitalistik jamiyat qaysi ikki asosiy iqtisodiy ustunga tayanadi?", options: ["Jamoaviy mulk va natural ayirboshlashga", "Davlat monopoliyasi va majburiy hashar mehnatiga", "Xususiy mulk va yollanma mehnatga", "Sex ustavlari va tabaqaviy cheklovlarga"], answer: 2, exp: "Kapitalistik jamiyat xususiy mulk (fabrika, zavod, kon, bank) va yollanma mehnatga tayangan ijtimoiy-iqtisodiy tuzumdir." },
+                    { q: "Yangi davrda Yevropada shakllangan ishchanlik va intiluvchanlik belgilarining bir qismi qaysi mintaqadan kirib kelgan?", options: ["Shimoliy Amerikadan", "Avstraliyadan", "Janubiy Afrikadan", "Sharqdan"], answer: 3, exp: "Darslikda ta'kidlanishicha, ishchanlik va intiluvchanlik belgilarining bir qismi Yevropaga Sharqdan kirib kelgan." },
+                    { q: "Yangi davrda Yevropa madaniy hayotida qaysi uch jarayon yaqqol kuchaydi?", options: ["Rivojlangan shahar madaniyati, antik davrga qiziqish va badiiy san'atning hayotiylashuvi", "Qishloq an'analariga qaytish, lotin tilini majburiylashtirish va diniy taqiqlar", "Ko'chmanchi turmush tarzi, og'zaki dostonchilik va tabaqaviy yopiqlik", "Faqat monastir maktablari, cherkov musiqasi va sxolastika hukmronligi"], answer: 0, exp: "Yangi davrda rivojlangan shahar madaniyati, antik davrga qiziqish va badiiy san'atning hayotiylashuvi kuchaydi." },
+                    { q: "Industrial sivilizatsiya dastlab qaysi mamlakatlarda va qaysi jamiyat zamirida shakllandi?", options: ["Janubiy Osiyo mamlakatlarida quldorlik jamiyati zamirida", "G'arbiy Yevropaning ilg'or mamlakatlarida kapitalistik jamiyat zamirida", "Lotin Amerikasi davlatlarida an'anaviy agrar jamiyat zamirida", "Sharqiy Afrika hududlarida qabilaviy tuzum zamirida"], answer: 1, exp: "Industrial sivilizatsiya G'arbiy Yevropaning ilg'or mamlakatlarida kapitalistik jamiyat zamirida sanoatga asoslanib shakllandi." },
+                    { q: "Yangi tarixning birinchi bosqichi qaysi tarixiy voqealar oralig'ini o'z ichiga oladi?", options: ["Neolit davridan Buyuk geografik kashfiyotlargacha", "Sanoat inqilobidan Ikkinchi jahon urushigacha", "Buyuk geografik kashfiyotlardan XVIII asr oxiridagi Buyuk fransuz burjua inqilobigacha", "XVIII asr oxiridan 1918-yilgacha"], answer: 2, exp: "Yangi tarixning 1-bosqichi XV asr oxiri — XVI asr boshlaridagi Buyuk geografik kashfiyotlardan Buyuk fransuz burjua inqilobigacha davom etadi." },
+                    { q: "Yangi tarixning ikkinchi bosqichi qaysi davrni qamrab oladi?", options: ["XVI asr boshidan XVIII asr o'rtalarigacha", "XVII asr o'rtalaridan XIX asr o'rtalarigacha", "1918-yildan XX asr oxirigacha", "XIX asr boshidan Birinchi jahon urushi yakuni - 1918-yilgacha"], answer: 3, exp: "Yangi tarixning 2-bosqichi XIX asr boshidan Birinchi jahon urushi yakunlangan 1918-yilgacha bo'lgan davrni qamrab oladi." },
+                    { q: "Yangi davrda Yevropada milliy davlatlar dastlab asosan qaysi boshqaruv shaklida shakllandi?", options: ["Mutlaq monarxiya shaklida", "Federativ respublika shaklida", "Teokratik davlat shaklida", "Harbiy diktatura shaklida"], answer: 0, exp: "Yevropada gumanistik dunyoqarash negizida millatlar va mutlaq monarxiya shaklidagi milliy davlatlar shakllandi." },
+                    { q: "XIX asr boshlarida Osiyo, Afrika va Janubiy Amerikadagi ko'pchilik mamlakatlar qanday taraqqiyot bosqichida qolgan edi?", options: ["Yuqori industrial sivilizatsiya bosqichida", "Qoloq agrar jamiyat darajasida qolib, mustamlakachilikka qarshi kurash olib borgan", "To'liq mashinali fabrika tizimiga o'tib bo'lgan", "Yevropa bilan teng kapitalistik raqobat darajasida"], answer: 1, exp: "Osiyo, Afrika va Janubiy Amerikadagi ko'pchilik mamlakatlar XIX asr boshlarida ham qoloq agrar jamiyat darajasida qolib, mustamlakachilikka qarshi kurashdi." },
+                    { q: "Agrar sivilizatsiya va industrial sivilizatsiyaning ijtimoiy tuzumi qanday farqlanadi?", options: ["Agrarda sinfiy jamiyat, industrialda urug'-qabilachilik hukmron", "Ikkalasida ham faqat diniy tabaqalar mavjud", "Agrarda tabaqaviy bo'linish, industrialda esa sinfiy jamiyat va shaxs erkinligi", "Agrarda burjuaziya, industrialda esa feodal knyazlar yetakchi"], answer: 2, exp: "Agrar sivilizatsiya tabaqaviy bo'linishga, industrial sivilizatsiya esa sinfiy jamiyat, gumanizm va shaxs erkinligiga asoslanadi." },
+                    { q: "1492-yili Amerikaga yetib borib, Buyuk geografik kashfiyotlar va Yangi davr tarixining boshlanishiga turtki bergan dengiz sayohatchisi kim?", options: ["Vasko da Gama", "Abel Tasman", "Amerigo Vespuchchi", "Xristofor Kolumb"], answer: 3, exp: "Xristofor Kolumb 1492-yili Amerikaga yetib borib, Buyuk geografik kashfiyotlar va Yangi davr tarixining boshlanishiga turtki berdi." },
+                    { q: "1517-yili Reformatsiya harakatini boshlab, Yevropada yangicha dunyoqarash va milliy davlatlar shakllanishiga hissa qo'shgan ilohiyot professori kim?", options: ["Martin Lyuter", "Ignatiy Loyola", "Tomas Mor", "Jon Lokk"], answer: 0, exp: "Ilohiyot professori Martin Lyuter 1517-yili Reformatsiyani boshlab, Yevropada yangicha dunyoqarash shakllanishiga hissa qo'shdi." },
+                    { q: "Universal bug' mashinasini yaratib, XVIII asr 60-yillarida boshlangan sanoat inqilobini tezlashtirgan shotland ixtirochisi kim?", options: ["Jon Key", "Jeyms Uatt", "Edmund Kartrayt", "Jeyms Xargrivs"], answer: 1, exp: "Shotland ixtirochisi Jeyms Uatt universal bug' mashinasini yaratib, sanoat inqilobi va industrial sivilizatsiyaga o'tishni tezlashtirdi." },
+                    { q: "Yangi tarix yakunining rasmiy sanasi sifatida qaysi yil va voqea qabul qilingan?", options: ["1789-yil - Bastiliyaning egallanishi", "1871-yil - Germaniya imperiyasining tuzilishi", "1918-yil - Birinchi jahon urushining yakunlanishi", "1945-yil - Ikkinchi jahon urushining yakunlanishi"], answer: 2, exp: "Maktab darsligiga ko'ra Yangi tarix Birinchi jahon urushi yakunlangan 1918-yilda tugaydi." },
+                    { q: "Agrar sivilizatsiya iqtisodiyotining asosiy ishlab chiqarish shakllarini ko'rsating.", options: ["Fabrikalar, zavodlar va aksionerlik jamiyatlari", "Mashinali konlar, temiryo'llar va banklar", "Yollanma korxonalar va jahon birjalari", "Qishloq xo'jaligi, qo'l mehnati va hunarmandchilik sexlari"], answer: 3, exp: "Agrar sivilizatsiyaning iqtisodiy asosi qishloq xo'jaligi, qo'l mehnati va o'rta asr hunarmandchilik sexlaridan iborat edi." },
+                    { q: "Qaysi javobda tarixiy hodisalar to'g'ri xronologik ketma-ketlikda joylashtirilgan?", options: ["Buyuk geografik kashfiyotlar -> Kapitalistik jamiyat shakllanishi -> Sanoat inqilobi -> Buyuk fransuz inqilobi", "Sanoat inqilobi -> Buyuk geografik kashfiyotlar -> Buyuk fransuz inqilobi -> Birinchi jahon urushi", "Buyuk fransuz inqilobi -> Kapitalistik jamiyat shakllanishi -> Buyuk geografik kashfiyotlar -> Sanoat inqilobi", "Birinchi jahon urushi -> Sanoat inqilobi -> Buyuk fransuz inqilobi -> Buyuk geografik kashfiyotlar"], answer: 0, exp: "Ketma-ketlik: XV asr oxiri kashfiyotlar -> XVI asr kapitalizm -> XVIII asr 60-yillari sanoat inqilobi -> XVIII asr oxiri Buyuk fransuz inqilobi." },
+                    { q: "Quyidagi fikrlardan qaysi biri «kapital» tushunchasiga mos keladi?", options: ["Faqat dehqonning shaxsiy iste'mol uchun yetishtirgan g'allasi", "O'zini o'zi ko'paytiruvchi sarmoya va egasiga daromad keltiruvchi xususiy mulk", "Feodallarning merosiy harbiy unvoni va tabaqaviy imtiyozi", "O'rta asr sex ustalarining diniy bayram jamg'armasi"], answer: 1, exp: "Kapital — egasiga daromad keltiruvchi xususiy mulk (fabrika, zavod, kon, bank) va o'zini o'zi ko'paytiruvchi sarmoyadir." }
+                ]
+            },
+            "mavzu-1": {
+                title: "1-mavzu. Buyuk geografik kashfiyotlar. Mustamlaka tizimining shakllanishi",
+                meta: "8–11-betlar • 37 ta savol",
+                questions: [
+                    { q: "XV asrda inqirozga uchragan karimiylar uyushmasi qaysi shahardagi ziravor savdosini nazorat qilgan?", options: ["Malakka", "Adan", "Kalikutta", "Surat"], answer: 1, exp: "Yamanning Adan shahridagi ziravor savdosini nazorat qilgan karimiylar uyushmasi XV asrda inqirozga uchradi va ularning o'rnini Gujorat savdogarlari egalladi." },
+                    { q: "XV asr o'rtalarida Okinava «savdo uchburchagi»da qatnagan xalqaro ekipajli kemalar qanday nomlangan?", options: ["«Jonka»", "«Karavella»", "«Galeon»", "«Fregat»"], answer: 0, exp: "Okinavaning «oltin davri»da (foyda 1000 foizgacha yetgan) xalqaro ekipajli «Jonka» kemalari qatnagan." },
+                    { q: "1453-yili qaysi voqea yevropaliklarni Hindiston va Xitoyga yangi dengiz yo'llari izlashga majbur qildi?", options: ["Portugaliyaliklarning Madeyra orollarini kashf etishi", "Ispaniyada Rekonkistaning yakunlanishi", "Usmoniylarning Konstantinopolni zabt etishi", "Venetsiya flotining tor-mor etilishi"], answer: 2, exp: "1453-yili Usmoniylar Konstantinopolni zabt etib, O'rtayer dengizi va Buyuk Ipak yo'li orqali Sharq bilan savdoni to'sib qo'ydi." },
+                    { q: "1419-yili portugaliyaliklar Atlantika okeanida qaysi orollarni kashf etdilar?", options: ["Azor orollarini", "Kanar orollarini", "Antil orollarini", "Madeyra orollarini"], answer: 3, exp: "1419-yili portugaliyalik dengizchilar Atlantika okeanidagi Madeyra orollarini kashf etdilar." },
+                    { q: "Xristofor Kolumb 1492-yil 3-avgustda qaysi uch karavellada yo'lga chiqqan?", options: ["«Santa-Mariya», «Pinta», «Ninya»", "«Viktoriya», «Trinidad», «Sant-Yago»", "«Santa-Mariya», «Viktoriya», «Pinta»", "«Ninya», «San-Gabriel», «Pinta»"], answer: 0, exp: "Xristofor Kolumb 1492-yil 3-avgustda «Santa-Mariya», «Pinta» va «Ninya» nomli uchta karavellada ekspeditsiyaga chiqqan." },
+                    { q: "Xristofor Kolumb ekspeditsiyasi 70 kunlik suzishdan so'ng 14
