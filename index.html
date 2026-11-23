@@ -2,286 +2,178 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mizon ta'lim</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: #faf6f0;
-      color: #1c2430;
-      line-height: 1.5;
-      padding-bottom: 85px;
-    }
-    .app {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 14px;
-    }
-    .topbar {
-      background: #fffdf9;
-      border: 1px solid #eadfce;
-      border-radius: 18px;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: #1e3a5f;
-      color: #f9d99a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
-    .brand-title {
-      font-size: 15px;
-      font-weight: 800;
-      color: #152944;
-    }
-    .brand-sub {
-      font-size: 12px;
-      color: #5e6978;
-    }
-    .badge {
-      background: #fdf2e0;
-      color: #8c5a12;
-      border: 1px solid #f0d7ac;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 5px 12px;
-      border-radius: 20px;
-    }
-    .hero-card {
-      background: linear-gradient(135deg, #23426b, #162a46);
-      color: #ffffff;
-      border-radius: 20px;
-      padding: 18px;
-      margin-bottom: 14px;
-    }
-    .hero-title {
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-    .hero-desc {
-      font-size: 13px;
-      opacity: 0.92;
-      margin-bottom: 14px;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 8px;
-    }
-    .hero-btn {
-      flex: 1;
-      border: none;
-      border-radius: 12px;
-      padding: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .hero-btn.gold {
-      background: #f3c97b;
-      color: #3a2406;
-    }
-    .hero-btn.light {
-      background: #ffffff;
-      color: #152944;
-    }
-    .panel {
-      background: #fffdf9;
-      border: 1px solid #eadfce;
-      border-radius: 18px;
-      padding: 16px;
-      margin-bottom: 14px;
-    }
-    .panel-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: #152944;
-      margin-bottom: 8px;
-    }
-    .panel-text {
-      font-size: 13px;
-      color: #5e6978;
-      margin-bottom: 12px;
-    }
-    .subject-item {
-      background: #ffffff;
-      border: 1px solid #eadfce;
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 14px;
-      font-weight: 700;
-      color: #152944;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
-    .subject-item.clickable {
-      cursor: pointer;
-      background: #fdf7ec;
-      border-color: #e8d0a7;
-    }
-    .sub-badge {
-      background: #fdf2e0;
-      color: #8c5a12;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 8px;
-    }
-    .back-btn {
-      background: #f3ece1;
-      color: #152944;
-      border: 1px solid #eadfce;
-      border-radius: 10px;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-bottom: 12px;
-      display: inline-block;
-    }
-    .q-card {
-      background: #faf6f0;
-      border: 1px solid #eadfce;
-      border-radius: 14px;
-      padding: 12px;
-      margin-bottom: 12px;
-    }
-    .q-num {
-      font-size: 11px;
-      font-weight: 800;
-      color: #c88a2e;
-      margin-bottom: 4px;
-    }
-    .q-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #1c2430;
-      margin-bottom: 10px;
-    }
-    .opt-btn {
-      width: 100%;
-      text-align: left;
-      background: #ffffff;
-      border: 1px solid #eadfce;
-      border-radius: 10px;
-      padding: 9px 12px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #1c2430;
-      cursor: pointer;
-      margin-bottom: 6px;
-    }
-    .opt-btn.correct {
-      background: #e7f6ec;
-      color: #1b6b3a;
-      border-color: #8fd1a7;
-    }
-    .opt-btn.wrong {
-      background: #fdeceb;
-      color: #9e2a22;
-      border-color: #f0a49e;
-    }
-    .explanation {
-      display: none;
-      margin-top: 8px;
-      padding: 8px 10px;
-      border-radius: 8px;
-      background: #fdf2e0;
-      font-size: 12px;
-      color: #3a2406;
-    }
-    .bottom-nav {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #fffdf9;
-      border-top: 1px solid #eadfce;
-      display: flex;
-      padding: 8px 10px;
-      z-index: 99;
-    }
-    .nav-btn {
-      flex: 1;
-      background: transparent;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      color: #737e8c;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      padding: 4px 0;
-      border-radius: 10px;
-    }
-    .nav-btn.active {
-      background: #fdf2e0;
-      color: #152944;
-    }
+    body { font-family: Arial, sans-serif; background: #faf6f0; color: #1c2430; margin: 0; padding: 14px 14px 80px; }
+    .box { max-width: 600px; margin: 0 auto; background: #fffdf9; border: 1px solid #eadfce; border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+    .hero { background: #1e3a5f; color: #fff; border-radius: 18px; padding: 18px; margin-bottom: 12px; }
+    .btn { background: #f3c97b; color: #2b1a03; border: none; border-radius: 10px; padding: 9px 12px; font-weight: bold; cursor: pointer; margin-right: 6px; margin-top: 8px; }
+    .btn-light { background: #ffffff; color: #1e3a5f; }
+    .item { background: #faf6f0; border: 1px solid #eadfce; border-radius: 12px; padding: 11px 13px; margin-bottom: 8px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; }
+    .opt { display: block; width: 100%; text-align: left; background: #faf6f0; border: 1px solid #eadfce; border-radius: 10px; padding: 9px 12px; margin-top: 6px; cursor: pointer; }
+    .ok { background: #d8f3dc; border-color: #52b788; }
+    .bad { background: #ffd6d6; border-color: #e63946; }
+    .exp { display: none; margin-top: 8px; padding: 8px; background: #fdf2e0; border-radius: 8px; font-size: 13px; }
+    .nav { position: fixed; left: 0; right: 0; bottom: 0; background: #fffdf9; border-top: 1px solid #eadfce; display: flex; }
+    .nav button { flex: 1; padding: 12px 6px; border: none; background: none; font-weight: bold; color: #1e3a5f; cursor: pointer; }
   </style>
 </head>
 <body>
+  <div class="hero" style="max-width:600px;margin:0 auto 12px;">
+    <h2 id="greet" style="margin:0 0 6px;">Xush kelibsiz, Ulug'bek!</h2>
+    <p style="margin:0;font-size:13px;">Bizning Mizon ta'limda attestatsiya, milliy sertifikat va oliy o‘quv yurtiga tayyorgarlik ko‘rish uchun barcha qulayliklar yaratilgan.</p>
+    <button class="btn" onclick="showPage('subjects')">Fanlar</button>
+    <button class="btn btn-light" onclick="showPage('rating')">Reyting</button>
+    <button class="btn btn-light" onclick="showPage('profile')">Profil</button>
+  </div>
 
-  <div class="app">
-    <!-- TOPBAR -->
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-icon">🎓</div>
-        <div>
-          <div class="brand-title">Mizon ta'lim</div>
-          <div class="brand-sub">O‘quv maskani</div>
-        </div>
-      </div>
-      <div class="badge" id="badgeText">Bosh sahifa</div>
-    </header>
+  <div id="page-home" class="box">
+    <h3>Bosh sahifa</h3>
+    <p>Mizon ta'lim platformasiga xush kelibsiz. Test boshlash uchun <b>Fanlar</b> tugmasini bosing.</p>
+  </div>
 
-    <!-- HERO -->
-    <section class="hero-card">
-      <h1 class="hero-title" id="userName">Xush kelibsiz, Ulug'bek!</h1>
-      <p class="hero-desc">Bizning Mizon ta'limda attestatsiya, milliy sertifikat va oliy o‘quv yurtiga tayyorgarlik ko‘rish uchun barcha qulayliklar yaratilgan.</p>
-      <div class="hero-actions">
-        <button class="hero-btn gold" onclick="openTab('courses')">Fanlar</button>
-        <button class="hero-btn light" onclick="openTab('rating')">Reyting</button>
-        <button class="hero-btn light" onclick="openTab('profile')">Profil</button>
-      </div>
-    </section>
+  <div id="page-subjects" class="box" style="display:none;">
+    <h3>Maktab fanlari</h3>
+    <div class="item" onclick="showPage('history')"><span>Tarix (6-sinf)</span><span>Testlar →</span></div>
+    <div class="item"><span>Biologiya</span><span>Fan</span></div>
+    <div class="item"><span>Davlat va huquq asoslari</span><span>Fan</span></div>
+    <div class="item"><span>Fizika</span><span>Fan</span></div>
+    <div class="item"><span>Geografiya</span><span>Fan</span></div>
+    <div class="item"><span>Informatika va axborot texnologiyalari</span><span>Fan</span></div>
+    <div class="item"><span>Ingliz tili</span><span>Fan</span></div>
+    <div class="item"><span>Jismoniy tarbiya</span><span>Fan</span></div>
+    <div class="item"><span>Kimyo</span><span>Fan</span></div>
+    <div class="item"><span>Matematika</span><span>Fan</span></div>
+    <div class="item"><span>Musiqa madaniyati</span><span>Fan</span></div>
+    <div class="item"><span>Ona tili va adabiyot</span><span>Fan</span></div>
+    <div class="item"><span>Rus tili</span><span>Fan</span></div>
+    <div class="item"><span>Tasviriy san’at va chizmachilik</span><span>Fan</span></div>
+    <div class="item"><span>Texnologiya</span><span>Fan</span></div>
+  </div>
 
-    <!-- 1. BOSH SAHIFA -->
-    <div id="tab-home" class="panel">
-      <div class="panel-title">Bosh sahifa</div>
-      <p class="panel-text">Bizning Mizon ta'limda attestatsiya, milliy sertifikat va oliy o‘quv yurtiga tayyorgarlik ko‘rish jarayonini tartibli boshlashingiz mumkin.</p>
-      <div style="background:#fdf2e0; border-left:4px solid #c88a2e; padding:12px; border-radius:10px; font-size:13px;">
-        Testlarni ishlash uchun yuqoridagi <b>«Fanlar»</b> tugmasini yoki pastki menyuni bosing.
-      </div>
-    </div>
+  <div id="page-history" class="box" style="display:none;">
+    <button class="btn btn-light" onclick="showPage('subjects')">← Fanlar</button>
+    <h3>6-sinf Qadimgi dunyo tarixi</h3>
+    <div class="item" onclick="openQuiz('kirish')"><span>KIRISH (5–6-betlar)</span><span>Boshlash</span></div>
+    <div class="item" onclick="openQuiz('p1')"><span>1-§. Qadimgi tarix ildizlari</span><span>Boshlash</span></div>
+  </div>
 
-    <!-- 2. FANLAR RO‘YXATI -->
-    <div id="tab-courses" class="panel" style="display:none;">
-      <div class="panel-title">Maktab fanlari</div>
-      <p class="panel-text">Birinchi o‘rinda Tarix, undan keyin alifbo tartibida maktab fanlari:</p>
+  <div id="page-quiz" class="box" style="display:none;">
+    <button class="btn btn-light" onclick="showPage('history')">← Mavzular</button>
+    <h3 id="qTitle">Test</h3>
+    <div id="qList"></div>
+  </div>
 
-      
+  <div id="page-rating" class="box" style="display:none;">
+    <h3>Reyting</h3>
+    <p id="scoreText">Hali test ishlanmagan.</p>
+  </div>
+
+  <div id="page-profile" class="box" style="display:none;">
+    <h3>Profil</h3>
+    <p id="profText">Foydalanuvchi: Ulug'bek (@tariximizon_bot)</p>
+  </div>
+
+  <div class="nav">
+    <button onclick="showPage('home')">Bosh</button>
+    <button onclick="showPage('subjects')">Fanlar</button>
+    <button onclick="showPage('rating')">Reyting</button>
+    <button onclick="showPage('profile')">Profil</button>
+  </div>
+
+  <script>
+    var score = 0;
+    var quizBank = {
+      kirish: {
+        title: "KIRISH. Qadimgi dunyo tarixiga kirish",
+        items: [
+          {
+            q: "1. Qadimgi dunyo tarixi qaysi voqeagacha bo'lgan davrni o'z ichiga oladi?",
+            opts: ["A) Milodiy 476-yilda G'arbiy Rim qulaguniga qadar", "B) Milodiy 395-yilda Rim bo'linguniga qadar", "C) Milodiy 330-yilda Konstantinopol poytaxt bo'lguniga qadar", "D) Mil. avv. 330-yilda Ahamoniylar tugaguniga qadar"],
+            ans: 0,
+            exp: "To'g'ri javob: A. Qadimgi dunyo tarixi milodiy 476-yilda G'arbiy Rim imperiyasi qulaguniga qadar davom etgan."
+          },
+          {
+            q: "2. Qadimgi dunyo tarixi qaysi ikki asosiy manbada aks etgan?",
+            opts: ["A) Geografik va biologik", "B) Arxeologik va yozma", "C) Og'zaki va statistik", "D) Me'moriy va ilmiy"],
+            ans: 1,
+            exp: "To'g'ri javob: B. Qadimgi dunyo tarixi arxeologik va yozma manbalarda o'z aksini topgan."
+          }
+        ]
+      },
+      p1: {
+        title: "1-§. Qadimgi tarix ildizlari",
+        items: [
+          {
+            q: "1. Qadimgi manzilgohlarda qazishma olib boradigan olimlar kimlar?",
+            opts: ["A) Arxeologlar", "B) Etnograflar", "C) Geograflar", "D) Lingvistlar"],
+            ans: 0,
+            exp: "To'g'ri javob: A. Arxeologlar qadimgi manzilgoh va turarjoylarda qazishma ishlari olib boradi."
+          },
+          {
+            q: "2. O'rta Osiyo tarixi bo'yicha eng qadimgi yozma manba qaysi?",
+            opts: ["A) «Tarix»", "B) Behistun bitiklari", "C) «Geografiya»", "D) «Avesto»"],
+            ans: 3,
+            exp: "To'g'ri javob: D. «Avesto» O'rta Osiyo tarixi bo'yicha eng qadimgi yozma manbadir."
+          }
+        ]
+      }
+    };
+
+    function showPage(name) {
+      var pages = ["home", "subjects", "history", "quiz", "rating", "profile"];
+      for (var i = 0; i < pages.length; i++) {
+        document.getElementById("page-" + pages[i]).style.display = (pages[i] === name) ? "block" : "none";
+      }
+    }
+
+    function openQuiz(key) {
+      var qData = quizBank[key];
+      document.getElementById("qTitle").innerText = qData.title;
+      var list = document.getElementById("qList");
+      list.innerHTML = "";
+
+      for (var i = 0; i < qData.items.length; i++) {
+        var it = qData.items[i];
+        var wrap = document.createElement("div");
+        wrap.style.marginBottom = "14px";
+        var h = "<p><b>" + it.q + "</b></p>";
+        for (var j = 0; j < it.opts.length; j++) {
+          h += "<button class='opt' onclick='answer(this," + j + "," + it.ans + ",\"e" + i + "\")'>" + it.opts[j] + "</button>";
+        }
+        h += "<div id='e" + i + "' class='exp'>" + it.exp + "</div>";
+        wrap.innerHTML = h;
+        list.appendChild(wrap);
+      }
+      showPage("quiz");
+    }
+
+    function answer(btn, chosen, right, expId) {
+      var all = btn.parentElement.querySelectorAll(".opt");
+      for (var i = 0; i < all.length; i++) all[i].disabled = true;
+      if (chosen === right) {
+        btn.classList.add("ok");
+        score++;
+      } else {
+        btn.classList.add("bad");
+        all[right].classList.add("ok");
+      }
+      document.getElementById(expId).style.display = "block";
+      document.getElementById("scoreText").innerText = "To'g'ri javoblar: " + score + " ta";
+    }
+
+    try {
+      if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
+        var u = window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user;
+        if (u && u.first_name) {
+          document.getElementById("greet").innerText = "Xush kelibsiz, " + u.first_name + "!";
+          document.getElementById("profText").innerText = "Foydalanuvchi: " + u.first_name + " (ID: " + u.id + ")";
+        }
+      }
+    } catch (err) {}
+  </script>
+</body>
+</html>
