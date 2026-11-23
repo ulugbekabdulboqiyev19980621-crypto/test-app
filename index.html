@@ -1,181 +1,161 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>O'quv maskani</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        :root {
-            --bg: #eef4f7;
-            --card: #fbfdfe;
-            --text: #1b2836;
-            --muted: #62758a;
-            --border: #dce7ee;
-            --soft: #f4f8fb;
-            --sky: #2575b8;
-            --teal: #1f8a8a;
-            --peach-bg: #fdf2e6;
-            --peach-text: #9c5718;
-            --lavender-bg: #f1effb;
-            --lavender-text: #56469c;
-            --mint-bg: #e8f6f2;
-            --mint-text: #1b6e5c;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--bg); color: var(--text); padding: 14px 14px 86px 14px; min-height: 100vh; display: flex; justify-content: center; }
-        .wrap { width: 100%; max-width: 520px; }
-
-        .topbar { display: flex; justify-content: space-between; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 12px 16px; margin-bottom: 14px; }
-        .brand-wrap { display: flex; align-items: center; gap: 10px; }
-        .logo-dot { width: 34px; height: 34px; border-radius: 12px; background: linear-gradient(135deg, var(--sky), var(--teal)); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-        .brand-name { font-size: 16px; font-weight: 800; color: var(--text); }
-        .brand-tag { font-size: 11.5px; color: var(--muted); }
-        .badge-soft { background: var(--mint-bg); color: var(--mint-text); font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px; }
-
-        .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 18px; margin-bottom: 14px; box-shadow: 0 4px 16px rgba(27, 40, 54, 0.04); }
-
-        .welcome-card { background: linear-gradient(135deg, #2b7bba 0%, #2b9396 100%); color: #fff; border: none; }
-        .welcome-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-        .welcome-title { font-size: 20px; font-weight: 800; line-height: 1.25; }
-        .welcome-sub { font-size: 13px; opacity: 0.92; margin-top: 5px; line-height: 1.4; }
-        .avatar-circle { width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.22); border: 1px solid rgba(255, 255, 255, 0.35); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0; }
-
-        .color-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 14px; }
-        .strip-box { border-radius: 14px; padding: 11px 8px; text-align: center; font-size: 12px; font-weight: 700; }
-        .strip-1 { background: var(--peach-bg); color: var(--peach-text); }
-        .strip-2 { background: var(--lavender-bg); color: var(--lavender-text); }
-        .strip-3 { background: var(--mint-bg); color: var(--mint-text); }
-
-        .sec-title { font-size: 15px; font-weight: 800; margin-bottom: 8px; color: var(--text); }
-        .sec-desc { font-size: 13px; color: var(--muted); line-height: 1.48; }
-
-        .placeholder-box { margin-top: 12px; padding: 16px; border-radius: 15px; background: var(--soft); border: 1px dashed var(--border); font-size: 13px; color: var(--muted); line-height: 1.5; text-align: center; }
-
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(4, 1fr); padding: 8px 6px 10px 6px; z-index: 40; }
-        .nav-btn { background: none; border: none; color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; font-weight: 700; cursor: pointer; padding: 4px 2px; border-radius: 12px; transition: background 0.15s, color 0.15s; }
-        .nav-btn.active { color: var(--sky); background: #e8f2fa; }
-        .nav-ico { font-size: 18px; line-height: 1; }
-        .hidden { display: none !important; }
-    </style>
-</head>
-<body>
-<div class="wrap">
-    <div class="topbar">
-        <div class="brand-wrap">
-            <div class="logo-dot">✦</div>
-            <div>
-                <div class="brand-name">O'quv maskani</div>
-                <div class="brand-tag">Bosh menyu</div>
-            </div>
-        </div>
-        <span class="badge-soft" id="top-section-label">Bosh sahifa</span>
-    </div>
-
-    <!-- BOSH SAHIFA -->
-    <div id="view-home">
-        <div class="card welcome-card">
-            <div class="welcome-top">
-                <div>
-                    <div class="welcome-title" id="user-greeting">Xush kelibsiz!</div>
-                    <div class="welcome-sub">Sokin va qulay o‘quv maydoni. Kerakli bo‘limni pastki menyudan tanlang.</div>
-                </div>
-                <div class="avatar-circle" id="user-avatar">OM</div>
-            </div>
-            <div class="color-strip">
-                <div class="strip-box strip-1">Fanlar</div>
-                <div class="strip-box strip-2">Reyting</div>
-                <div class="strip-box strip-3">Profil</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="sec-title">Bosh sahifa</div>
-            <div class="sec-desc">Asosiy ko‘rinish tayyor. Qaysi fanlar qo‘shilishini aytishingiz bilan ularni shu yerda va «Fanlar» bo‘limida joylaymiz.</div>
-        </div>
-    </div>
-
-    <!-- FANLAR -->
-    <div id="view-subjects" class="hidden">
-        <div class="card">
-            <div class="sec-title">Fanlar</div>
-            <div class="placeholder-box">
-                Fanlar ro‘yxati siz aytadigan fanlar asosida shakllantiriladi. Hozircha bo‘sh va toza holatda.
-            </div>
-        </div>
-    </div>
-
-    <!-- REYTING -->
-    <div id="view-rating" class="hidden">
-        <div class="card">
-            <div class="sec-title">Reyting</div>
-            <div class="placeholder-box">
-                Reyting bo‘limi tayyor. Fanlar va mashqlar ulangach natijalar shu yerda ko‘rinadi.
-            </div>
-        </div>
-    </div>
-
-    <!-- PROFIL -->
-    <div id="view-profile" class="hidden">
-        <div class="card">
-            <div class="sec-title" id="profile-heading">Profil</div>
-            <div class="sec-desc">Foydalanuvchi profili bo‘limi tayyor.</div>
-        </div>
-    </div>
-</div>
-
-<!-- BOSH MENYU -->
-<nav class="bottom-nav" aria-label="Bosh menyu">
-    <button class="nav-btn active" data-view="home" onclick="showView('home')">
-        <span class="nav-ico">🏠</span>
-        <span>Bosh</span>
-    </button>
-    <button class="nav-btn" data-view="subjects" onclick="showView('subjects')">
-        <span class="nav-ico">📘</span>
-        <span>Fanlar</span>
-    </button>
-    <button class="nav-btn" data-view="rating" onclick="showView('rating')">
-        <span class="nav-ico">🏅</span>
-        <span>Reyting</span>
-    </button>
-    <button class="nav-btn" data-view="profile" onclick="showView('profile')">
-        <span class="nav-ico">👤</span>
-        <span>Profil</span>
-    </button>
-</nav>
-
-<script>
-const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
-let displayName = "O'quvchi";
-if (tg) {
-    tg.expand();
-    if (tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.first_name) {
-        displayName = tg.initDataUnsafe.user.first_name;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Nizom ta'lim</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root {
+      --bg: #f3f6f8;
+      --card: #ffffff;
+      --text: #16222a;
+      --muted: #5c6f7b;
+      --teal-dark: #145c68;
+      --teal-mid: #1f7a86;
+      --teal-light: #e6f3f5;
+      --peach: #faece2;
+      --peach-text: #8a431b;
+      --border: #e3eaee;
+      --shadow: 0 8px 24px rgba(20, 46, 58, 0.06);
+      --radius-lg: 20px;
+      --radius-md: 14px;
     }
-}
 
-document.getElementById("user-greeting").innerText = `Xush kelibsiz, ${displayName}!`;
-document.getElementById("profile-heading").innerText = `Profil — ${displayName}`;
-const words = displayName.trim().split(/\s+/);
-const initials = ((words[0] && words[0][0]) || "O") + ((words[1] && words[1][0]) || "M");
-document.getElementById("user-avatar").innerText = initials.toUpperCase();
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-const viewNames = {
-    home: "Bosh sahifa",
-    subjects: "Fanlar",
-    rating: "Reyting",
-    profile: "Profil"
-};
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 88px;
+      min-height: 100vh;
+    }
 
-function showView(viewKey) {
-    ["home", "subjects", "rating", "profile"].forEach(k => {
-        document.getElementById("view-" + k).classList.toggle("hidden", k !== viewKey);
-    });
-    document.querySelectorAll(".nav-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.view === viewKey);
-    });
-    document.getElementById("top-section-label").innerText = viewNames[viewKey] || "Bosh sahifa";
-}
-</script>
-</body>
-</html>
+    .app {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 14px 14px 20px;
+    }
+
+    .topbar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--teal-mid), var(--teal-dark));
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 6px 14px rgba(20, 92, 104, 0.22);
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .pill-badge {
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #217b88 0%, #145b67 100%);
+      color: #ffffff;
+      border-radius: 22px;
+      padding: 20px 18px;
+      box-shadow: 0 12px 26px rgba(20, 91, 103, 0.22);
+      margin-bottom: 14px;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .hero-desc {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.48;
+    }
+
+    .avatar-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .hero-btn {
+      border: none;
+      border-radius: 12px;
+      padding: 10px 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.
+        
