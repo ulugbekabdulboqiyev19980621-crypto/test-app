@@ -106,8 +106,9 @@
       white-space: nowrap;
     }
 
-    .hero {
-      background: var(--navy-grad);
+    /* KUTIB OLISH KARTASI */
+    .greeting-card {
+      background: var(--navy-card);
       color: #ffffff;
       border-radius: 20px;
       padding: 22px 18px;
@@ -115,14 +116,15 @@
       box-shadow: 0 12px 28px rgba(19, 36, 58, 0.18);
     }
 
-    .hero h2 {
+    .greeting-title {
       font-size: 21.5px;
       font-weight: 800;
       margin-bottom: 8px;
       line-height: 1.3;
+      color: #ffffff;
     }
 
-    .hero p {
+    .greeting-desc {
       font-size: 15.5px;
       color: #f0f4f9;
       line-height: 1.58;
@@ -141,13 +143,7 @@
       font-size: 19px;
       font-weight: 800;
       color: var(--navy);
-      margin-bottom: 6px;
-    }
-
-    .box-desc {
-      font-size: 14.5px;
-      color: var(--muted);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .note {
@@ -175,6 +171,11 @@
       justify-content: space-between;
       gap: 12px;
       cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .row-card:active {
+      transform: scale(0.985);
     }
 
     .row-card.featured {
@@ -214,12 +215,6 @@
       line-height: 1.35;
     }
 
-    .row-sub {
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
     .pill {
       font-size: 12px;
       font-weight: 700;
@@ -240,7 +235,7 @@
       border: 1px solid var(--border);
     }
 
-    .back-btn {
+    .back-btn, .back-nav-btn {
       background: var(--warm);
       color: var(--navy);
       border: 1px solid var(--border);
@@ -253,58 +248,22 @@
       display: inline-block;
     }
 
-    .quiz-summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .sum-item {
-      background: var(--warm);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 10px 8px;
-      text-align: center;
-    }
-
-    .sum-item.ok-box {
-      background: var(--ok-bg);
-      border-color: var(--ok-border);
-    }
-
-    .sum-item.bad-box {
-      background: var(--bad-bg);
-      border-color: var(--bad-border);
-    }
-
-    .sum-lbl {
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .sum-num {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--navy);
-      margin-top: 2px;
-    }
-
-    .ok-box .sum-num {
-      color: var(--ok-text);
-    }
-
-    .bad-box .sum-num {
-      color: var(--bad-text);
-    }
-
+    /* TEST SAVOLLARI KARTASI */
     .q-card {
       background: var(--warm);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 15px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+    }
+
+    .q-badge {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .q-title {
@@ -312,6 +271,7 @@
       font-weight: 700;
       margin-bottom: 10px;
       line-height: 1.5;
+      color: var(--text);
     }
 
     .opt-btn {
@@ -327,18 +287,21 @@
       cursor: pointer;
       margin-bottom: 7px;
       line-height: 1.45;
+      transition: all 0.15s ease;
     }
 
     .opt-btn.ok {
-      background: var(--ok-bg);
-      color: var(--ok-text);
-      border-color: var(--ok-border);
+      background: var(--ok-bg) !important;
+      color: var(--ok-text) !important;
+      border-color: var(--ok-border) !important;
+      font-weight: 700;
     }
 
     .opt-btn.bad {
-      background: var(--bad-bg);
-      color: var(--bad-text);
-      border-color: var(--bad-border);
+      background: var(--bad-bg) !important;
+      color: var(--bad-text) !important;
+      border-color: var(--bad-border) !important;
+      font-weight: 700;
     }
 
     .exp-box {
@@ -350,6 +313,120 @@
       border: 1px solid var(--gold-border);
       font-size: 14px;
       color: #452a05;
+      line-height: 1.5;
+    }
+
+    /* OXIRIDA CHIQUVCHI IDEAL NATIJA KARTASI */
+    .result-modal-card {
+      background: var(--surface);
+      border: 2px solid var(--gold-border);
+      border-radius: 20px;
+      padding: 22px 18px;
+      margin-top: 18px;
+      box-shadow: 0 10px 30px rgba(24, 45, 73, 0.12);
+      text-align: center;
+      display: none;
+    }
+
+    .res-trophy {
+      font-size: 42px;
+      margin-bottom: 6px;
+    }
+
+    .res-head {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .res-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .res-circle-wrap {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      border: 3px solid var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .res-pct {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .res-pct-lbl {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    .res-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .res-stat-box {
+      background: var(--warm);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 6px;
+    }
+
+    .res-stat-lbl {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .res-stat-val {
+      font-size: 18px;
+      font-weight: 800;
+      margin-top: 2px;
+      color: var(--navy);
+    }
+
+    .res-stat-val.ok-num { color: var(--ok-text); }
+    .res-stat-val.bad-num { color: var(--bad-text); }
+
+    .res-btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .res-action-btn {
+      flex: 1;
+      padding: 11px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+
+    .res-action-btn.gold-btn {
+      background: var(--gold);
+      color: #ffffff;
+    }
+
+    .res-action-btn.light-btn {
+      background: var(--warm);
+      color: var(--navy);
+      border: 1px solid var(--border);
     }
 
     .info-box {
@@ -459,48 +536,48 @@
         <div class="logo">M</div>
         <div>
           <div class="brand-name">MIZON TA'LIM</div>
-          <div class="brand-sub">O‘quv maskani</div>
+          <div class="brand-sub">O'quv maskani</div>
         </div>
       </div>
       <div class="badge" id="topBadge">Bosh</div>
     </header>
 
-    <section class="hero">
-      <h2 id="greetTitle">Xush kelibsiz, Ulug'bek!</h2>
-      <p>
-        Bizning Mizon ta'limdan attestatsiya, milliy sertifikat va oliy o‘quv yurtiga tayyorgarlik ko‘rishingizni boshlashingiz mumkin.
+    <!-- 1. KUTIB OLISH KARTASI -->
+    <section class="greeting-card">
+      <h2 class="greeting-title" id="greetTitle">Xush kelibsiz, Ulug'bek!</h2>
+      <p class="greeting-desc">
+        Bizning Mizon ta'limda attestatsiya, milliy sertifikat va oliy o'quv yurtiga tayyorgarlik ko'rishingiz mumkin.
       </p>
     </section>
 
-    <!-- 1. BOSH -->
+    <!-- 1. BOSH TAB -->
     <div class="page active" id="page-home">
       <div class="box">
         <div class="box-title">Bosh sahifa</div>
         <div class="note">
-          Fanlarni ochish uchun pastdagi <b>Fanlar</b> bo‘limiga kiring.
+          Fanlarni ochish uchun pastdagi <b>Fanlar</b> bo'limiga kiring.
         </div>
       </div>
     </div>
 
-    <!-- 2. FANLAR -->
+    <!-- 2. FANLAR TAB -->
     <div class="page" id="page-subjects">
-      <!-- 18 ta fan -->
+      <!-- 18 ta fan ro'yxati -->
       <div class="box subpage active" id="sub-subjects-list">
         <div class="box-title">Fanlar</div>
         <div class="list">
+          <!-- 1. Tarix (faqat nomi turadi) -->
           <div class="row-card featured" onclick="openSub('sub-history-menu', 'Tarix')">
             <div class="row-left">
               <div class="icon-sq">📜</div>
-              <div>
-                <div class="row-title">1. Tarix</div>
-                <div class="row-sub">7 ta bo‘lim</div>
-              </div>
+              <div class="row-title">1. Tarix</div>
             </div>
             <span class="pill pill-main">Ochish</span>
           </div>
 
+          <!-- Qolgan 17 ta fan alifbo tartibida -->
           <div class="row-card"><div class="row-left"><div class="icon-sq">🌿</div><div class="row-title">2. Biologiya</div></div><span class="pill pill-muted">Fan</span></div>
-          <div class="row-card"><div class="row-left"><div class="icon-sq">✏️</div><div class="row-title">3. Boshlang‘ich ta'lim</div></div><span class="pill pill-muted">Fan</span></div>
+          <div class="row-card"><div class="row-left"><div class="icon-sq">✏️</div><div class="row-title">3. Boshlang'ich ta'lim</div></div><span class="pill pill-muted">Fan</span></div>
           <div class="row-card"><div class="row-left"><div class="icon-sq">⚖️</div><div class="row-title">4. Davlat va huquq asoslari</div></div><span class="pill pill-muted">Fan</span></div>
           <div class="row-card"><div class="row-left"><div class="icon-sq">⚡</div><div class="row-title">5. Fizika</div></div><span class="pill pill-muted">Fan</span></div>
           <div class="row-card"><div class="row-left"><div class="icon-sq">🌍</div><div class="row-title">6. Geografiya</div></div><span class="pill pill-muted">Fan</span></div>
@@ -514,58 +591,60 @@
           <div class="row-card"><div class="row-left"><div class="icon-sq">📖</div><div class="row-title">14. Ona tili va adabiyot</div></div><span class="pill pill-muted">Fan</span></div>
           <div class="row-card"><div class="row-left"><div class="icon-sq">🇷🇺</div><div class="row-title">15. Rus tili</div></div><span class="pill pill-muted">Fan</span></div>
           <div class="row-card"><div class="row-left"><div class="icon-sq">🤝</div><div class="row-title">16. Tarbiya</div></div><span class="pill pill-muted">Fan</span></div>
-          <div class="row-card"><div class="row-left"><div class="icon-sq">🎨</div><div class="row-title">17. Tasviriy san’at va chizmachilik</div></div><span class="pill pill-muted">Fan</span></div>
+          <div class="row-card"><div class="row-left"><div class="icon-sq">🎨</div><div class="row-title">17. Tasviriy san'at va chizmachilik</div></div><span class="pill pill-muted">Fan</span></div>
           <div class="row-card"><div class="row-left"><div class="icon-sq">🛠️</div><div class="row-title">18. Texnologiya</div></div><span class="pill pill-muted">Fan</span></div>
         </div>
       </div>
 
-      <!-- Tarix ichidagi 7 ta bo'lim -->
+      <!-- Tarix ichidagi 7 ta yo'nalish -->
       <div class="box subpage" id="sub-history-menu">
         <button class="back-btn" type="button" onclick="openSub('sub-subjects-list', 'Fanlar')">← Fanlarga qaytish</button>
         <div class="box-title">Tarix</div>
         <div class="list">
-          <div class="row-card featured" onclick="openSub('sub-grade6-topics', '6-sinf Tarix')">
-            <div class="row-left"><div class="icon-sq">📝</div><div class="row-title">1. Test</div></div>
+          <!-- 1. Mavzulashtirilgan test -->
+          <div class="row-card featured" onclick="openSub('sub-grade6-topics', 'Mavzulashtirilgan test')">
+            <div class="row-left"><div class="icon-sq">📝</div><div class="row-title">1. Mavzulashtirilgan test</div></div>
             <span class="pill pill-main">Ochish</span>
           </div>
-          <div class="row-card" onclick="openSectionInfo('2. Qo‘llanma')">
-            <div class="row-left"><div class="icon-sq">📘</div><div class="row-title">2. Qo‘llanma</div></div>
-            <span class="pill pill-muted">Bo‘lim</span>
+          <div class="row-card" onclick="openSectionInfo('2. Qo\'llanma')">
+            <div class="row-left"><div class="icon-sq">📘</div><div class="row-title">2. Qo'llanma</div></div>
+            <span class="pill pill-muted">Bo'lim</span>
           </div>
           <div class="row-card" onclick="openSectionInfo('3. Audio yozuv')">
             <div class="row-left"><div class="icon-sq">🎧</div><div class="row-title">3. Audio yozuv</div></div>
-            <span class="pill pill-muted">Bo‘lim</span>
+            <span class="pill pill-muted">Bo'lim</span>
           </div>
           <div class="row-card" onclick="openSectionInfo('4. Video yozuv')">
             <div class="row-left"><div class="icon-sq">🎬</div><div class="row-title">4. Video yozuv</div></div>
-            <span class="pill pill-muted">Bo‘lim</span>
+            <span class="pill pill-muted">Bo'lim</span>
           </div>
           <div class="row-card" onclick="openSectionInfo('5. Milliy sertifikat testi')">
             <div class="row-left"><div class="icon-sq">✅</div><div class="row-title">5. Milliy sertifikat testi</div></div>
-            <span class="pill pill-muted">Bo‘lim</span>
+            <span class="pill pill-muted">Bo'lim</span>
           </div>
           <div class="row-card" onclick="openSectionInfo('6. Attestatsiya testi')">
             <div class="row-left"><div class="icon-sq">🏅</div><div class="row-title">6. Attestatsiya testi</div></div>
-            <span class="pill pill-muted">Bo‘lim</span>
+            <span class="pill pill-muted">Bo'lim</span>
           </div>
-          <div class="row-card" onclick="openSectionInfo('7. Attestatsiya: pedagog mahorat, kasbiy mahorat va darsliklar testlari')">
-            <div class="row-left"><div class="icon-sq">🎓</div><div class="row-title">7. Attestatsiya: pedagog mahorat, kasbiy mahorat va darsliklar testlari</div></div>
-            <span class="pill pill-muted">Bo‘lim</span>
+          <!-- 7. Attestatsiya bo'yicha pedagog va kasbiy mahorat -->
+          <div class="row-card" onclick="openSectionInfo('7. Attestatsiya bo\'yicha pedagog va kasbiy mahorat')">
+            <div class="row-left"><div class="icon-sq">🎓</div><div class="row-title">7. Attestatsiya bo'yicha pedagog va kasbiy mahorat</div></div>
+            <span class="pill pill-muted">Bo'lim</span>
           </div>
         </div>
       </div>
 
       <!-- 6-sinf mavzulari -->
       <div class="box subpage" id="sub-grade6-topics">
-        <button class="back-btn" type="button" onclick="openSub('sub-history-menu', 'Tarix')">← Tarix bo‘limlariga qaytish</button>
+        <button class="back-nav-btn" type="button" onclick="openSub('sub-history-menu', 'Tarix')">← Tarix bo'limlariga qaytish</button>
         <div class="box-title">6-sinf Qadimgi dunyo tarixi</div>
         <div class="list">
           <div class="row-card" onclick="startTopic('kirish')">
-            <div class="row-left"><div class="icon-sq">1</div><div><div class="row-title">KIRISH. Qadimgi dunyo tarixiga kirish</div><div class="row-sub">5 ta savol</div></div></div>
+            <div class="row-left"><div class="icon-sq">📖</div><div><div class="row-title">KIRISH. Qadimgi dunyo tarixiga kirish</div><div style="font-size:13px; color:var(--muted);">5–6-betlar • 5 ta test</div></div></div>
             <span class="pill pill-main">Boshlash</span>
           </div>
           <div class="row-card" onclick="startTopic('p1')">
-            <div class="row-left"><div class="icon-sq">2</div><div><div class="row-title">1-§. Qadimgi tarix ildizlari</div><div class="row-sub">5 ta savol</div></div></div>
+            <div class="row-left"><div class="icon-sq">⛏️</div><div><div class="row-title">1-§. Qadimgi tarix ildizlari</div><div style="font-size:13px; color:var(--muted);">7–10-betlar • 5 ta test</div></div></div>
             <span class="pill pill-main">Boshlash</span>
           </div>
         </div>
@@ -573,39 +652,56 @@
 
       <!-- Test ishlash oynasi -->
       <div class="box subpage" id="sub-quiz-play">
-        <button class="back-btn" type="button" onclick="openSub('sub-grade6-topics', '6-sinf Tarix')">← Mavzularga qaytish</button>
+        <button class="back-btn" type="button" onclick="openSub('sub-grade6-topics', 'Mavzulashtirilgan test')">← Mavzularga qaytish</button>
         <div class="box-title" id="quizTopicTitle">Test</div>
 
-        <div class="quiz-summary">
-          <div class="sum-item">
-            <div class="sum-lbl">Yechilgan</div>
-            <div class="sum-num" id="qSolved">0 / 0</div>
+        <div id="quizContainer"></div>
+
+        <!-- OXIRIDA CHIQUVCHI IDEAL NATIJA KARTASI -->
+        <div class="result-modal-card" id="quizResultCard">
+          <div class="res-trophy" id="resTrophy">🏆</div>
+          <h3 class="res-head" id="resHeadline">A'lo natija!</h3>
+          <p class="res-sub" id="resSubline">Mavzu bo'yicha barcha savollarni yechib bo'ldingiz.</p>
+
+          <div class="res-circle-wrap">
+            <div class="res-pct" id="resPercent">100%</div>
+            <div class="res-pct-lbl">Ko'rsatkich</div>
           </div>
-          <div class="sum-item ok-box">
-            <div class="sum-lbl">To‘g‘ri</div>
-            <div class="sum-num" id="qRight">0</div>
+
+          <div class="res-stats-grid">
+            <div class="res-stat-box">
+              <div class="res-stat-lbl">Jami savol</div>
+              <div class="res-stat-val" id="resTotalQ">5</div>
+            </div>
+            <div class="res-stat-box">
+              <div class="res-stat-lbl">To'g'ri</div>
+              <div class="res-stat-val ok-num" id="resCorrectQ">5</div>
+            </div>
+            <div class="res-stat-box">
+              <div class="res-stat-lbl">Xato</div>
+              <div class="res-stat-val bad-num" id="resWrongQ">0</div>
+            </div>
           </div>
-          <div class="sum-item bad-box">
-            <div class="sum-lbl">Xato</div>
-            <div class="sum-num" id="qWrong">0</div>
+
+          <div class="res-btn-group">
+            <button class="res-action-btn gold-btn" onclick="retryCurrentTopic()">Qayta ishlash</button>
+            <button class="res-action-btn light-btn" onclick="openSub('sub-grade6-topics', 'Mavzulashtirilgan test')">Mavzularga</button>
           </div>
         </div>
-
-        <div id="quizContainer"></div>
       </div>
 
-      <!-- Boshqa bo'limlar sahifasi -->
+      <!-- Boshqa bo'limlar info oynasi -->
       <div class="box subpage" id="sub-section-box">
-        <button class="back-btn" type="button" onclick="openSub('sub-history-menu', 'Tarix')">← Tarix bo‘limlariga qaytish</button>
-        <div class="box-title" id="secBoxTitle">Bo‘lim</div>
+        <button class="back-btn" type="button" onclick="openSub('sub-history-menu', 'Tarix')">← Tarix bo'limlariga qaytish</button>
+        <div class="box-title" id="secBoxTitle">Bo'lim</div>
         <div class="info-box">
-          <h4>Bo‘lim tuzilmasi tayyor</h4>
-          <p>Ushbu bo‘lim uchun materiallar keyingi bosqichda ulanadi.</p>
+          <h4>Bo'lim tayyorlanmoqda</h4>
+          <p>Ushbu bo'lim uchun o'quv materiallari keyingi bosqichda ulanadi.</p>
         </div>
       </div>
     </div>
 
-    <!-- 3. REYTING -->
+    <!-- 3. REYTING TAB -->
     <div class="page" id="page-rating">
       <div class="box">
         <div class="box-title">Reyting va xatolar tahlili</div>
@@ -615,7 +711,7 @@
             <div class="stat-val" id="allSolved">0</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">To‘g‘ri</div>
+            <div class="stat-label">To'g'ri</div>
             <div class="stat-val" id="allRight" style="color:var(--ok-text);">0</div>
           </div>
           <div class="stat-card">
@@ -630,13 +726,13 @@
         </div>
 
         <div class="info-box">
-          <h4>Nimani o‘rganish kerak?</h4>
-          <p id="learnNextText">Test yechganingizda xato chiqqan mavzu shu yerda ko‘rsatiladi.</p>
+          <h4>Nimani o'rganish kerak?</h4>
+          <p id="learnNextText">Test ishlaganingizda xato chiqqan mavzu shu yerda tavsiya qilinadi.</p>
         </div>
       </div>
     </div>
 
-    <!-- 4. PROFIL -->
+    <!-- 4. PROFIL TAB -->
     <div class="page" id="page-profile">
       <div class="box">
         <div class="box-title">Profil</div>
@@ -653,7 +749,7 @@
   </div>
 
   <!-- PASTKI FAQAT 4 TA TUGMA -->
-  <nav class="bottom-nav">
+  <nav class="bottom-bar">
     <button class="nav-btn active" id="nav-home" type="button" onclick="openPage('home')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg>
       <span>Bosh</span>
@@ -673,11 +769,11 @@
   </nav>
 
   <script>
-    var STORE_KEY = "mizon_talim_v2";
+    const STORE_KEY = "mizon_talim_v3";
 
     function getStore() {
       try {
-        var raw = localStorage.getItem(STORE_KEY);
+        const raw = localStorage.getItem(STORE_KEY);
         if (raw) return JSON.parse(raw);
       } catch (e) {}
       return {
@@ -695,67 +791,67 @@
       } catch (e) {}
     }
 
-    var state = getStore();
+    const state = getStore();
     saveStore(state);
 
-    var quizData = {
+    const quizData = {
       kirish: {
         title: "KIRISH. Qadimgi dunyo tarixiga kirish",
         questions: [
           {
-            q: "1. Tarix fanida qadimgi dunyo tarixi qaysi voqeaga qadar bo‘lgan davrni o‘z ichiga oladi?",
+            q: "1. Tarix fanida qadimgi dunyo tarixi qaysi voqeaga qadar bo'lgan davrni o'z ichiga oladi?",
             opts: [
-              "A) Milodiy 476-yilda G‘arbiy Rim imperiyasi qulaguniga qadar",
-              "B) Milodiy 395-yilda Rim imperiyasi ikkiga bo‘linguniga qadar",
-              "C) Milodiy 330-yilda Konstantinopol poytaxt bo‘lguniga qadar",
+              "A) Milodiy 476-yilda G'arbiy Rim imperiyasi qulaguniga qadar",
+              "B) Milodiy 395-yilda Rim imperiyasi ikkiga bo'linguniga qadar",
+              "C) Milodiy 330-yilda Konstantinopol poytaxt bo'lguniga qadar",
               "D) Mil. avv. 330-yilda Ahamoniylar davlati tugaguniga qadar"
             ],
             ans: 0,
-            exp: "Yer yuzida odam paydo bo‘lganidan to milodiy 476-yilda G‘arbiy Rim imperiyasi qulaguniga qadar kechgan davr qadimgi dunyo tarixi deyiladi."
+            exp: "Yer yuzida odam paydo bo'lganidan to milodiy 476-yilda G'arbiy Rim imperiyasi qulaguniga qadar kechgan davr qadimgi dunyo tarixi deyiladi."
           },
           {
-            q: "2. Qadimgi dunyo tarixi qaysi ikki asosiy turdagi manbalarda o‘z aksini topgan?",
+            q: "2. Qadimgi dunyo tarixi qaysi ikki asosiy turdagi manbalarda o'z aksini topgan?",
             opts: [
               "A) Geografik va biologik manbalarda",
               "B) Arxeologik va yozma manbalarda",
-              "C) Og‘zaki va kinematografik manbalarda",
-              "D) Me’moriy va statistik manbalarda"
+              "C) Og'zaki va kinematografik manbalarda",
+              "D) Me'moriy va statistik manbalarda"
             ],
             ans: 1,
-            exp: "Qadimgi dunyo tarixi arxeologik va yozma manbalarda o‘z aksini topgan."
+            exp: "Qadimgi dunyo tarixi arxeologik va yozma manbalarda o'z aksini topgan."
           },
           {
-            q: "3. Darslikda ta’kidlanishicha, tarix bizni hamma narsaga nima orqali erishishga o‘rgatadi?",
+            q: "3. Darslikda ta'kidlanishicha, tarix bizni hamma narsaga nima orqali erishishga o'rgatadi?",
             opts: [
-              "A) Zo‘ravonlik va harbiy ustunlik orqali",
+              "A) Zo'ravonlik va harbiy ustunlik orqali",
               "B) Faqat sanalar va shohlar nomini yod olish orqali",
-              "C) O‘zaro murosa va boshqalarga hurmat bilan munosabatda bo‘lish orqali",
+              "C) O'zaro murosa va boshqalarga hurmat bilan munosabatda bo'lish orqali",
               "D) Boshqa xalqlardan ajralib yashash orqali"
             ],
             ans: 2,
-            exp: "Tarix bizni zo‘ravonlikka emas, balki o‘zaro murosa va boshqalarga hurmat bilan munosabatda bo‘lishga o‘rgatadi."
+            exp: "Tarix bizni zo'ravonlikka emas, balki o'zaro murosa va boshqalarga hurmat bilan munosabatda bo'lishga o'rgatadi."
           },
           {
-            q: "4. Insoniyat tarixni birinchi navbatda nima uchun o‘rganishi kerakligi alohida uqtirilgan?",
+            q: "4. Insoniyat tarixni birinchi navbatda nima uchun o'rganishi kerakligi alohida uqtirilgan?",
             opts: [
-              "A) Faqat qadimgi tillarni o‘zlashtirish uchun",
-              "B) Turli sulolalar ro‘yxatini tuzish uchun",
+              "A) Faqat qadimgi tillarni o'zlashtirish uchun",
+              "B) Turli sulolalar ro'yxatini tuzish uchun",
               "C) Faqat janglar sanasini eslab qolish uchun",
               "D) Ajdodlarning bebaho yaratuvchanlik tajribasi uchun"
             ],
             ans: 3,
-            exp: "Tarixni sana va nomlar uchun emas, balki ajdodlarning bebaho yaratuvchanlik tajribasi uchun o‘rganish kerak."
+            exp: "Tarixni sana va nomlar uchun emas, balki ajdodlarning bebaho yaratuvchanlik tajribasi uchun o'rganish kerak."
           },
           {
-            q: "5. Tarixiy davrlarning to‘g‘ri xronologik ketma-ketligini aniqlang.",
+            q: "5. Tarixiy davrlarning to'g'ri xronologik ketma-ketligini aniqlang.",
             opts: [
-              "A) O‘rta asrlar → Qadimgi dunyo → Yangi tarix → Eng yangi tarix",
-              "B) Qadimgi dunyo → O‘rta asrlar → Yangi tarix → Eng yangi tarix",
-              "C) Qadimgi dunyo → Yangi tarix → O‘rta asrlar → Eng yangi tarix",
-              "D) Eng yangi tarix → Yangi tarix → O‘rta asrlar → Qadimgi dunyo"
+              "A) O'rta asrlar → Qadimgi dunyo → Yangi tarix → Eng yangi tarix",
+              "B) Qadimgi dunyo → O'rta asrlar → Yangi tarix → Eng yangi tarix",
+              "C) Qadimgi dunyo → Yangi tarix → O'rta asrlar → Eng yangi tarix",
+              "D) Eng yangi tarix → Yangi tarix → O'rta asrlar → Qadimgi dunyo"
             ],
             ans: 1,
-            exp: "Xronologik ketma-ketlik: Qadimgi dunyo → O‘rta asrlar → Yangi tarix → Eng yangi tarix."
+            exp: "Xronologik ketma-ketlik: Qadimgi dunyo → O'rta asrlar → Yangi tarix → Eng yangi tarix."
           }
         ]
       },
@@ -772,22 +868,22 @@
             q: "2. Qadimgi odamlarning suyak qoldiqlarini tekshirib, ularning tashqi qiyofasini tiklaydigan olimlar qanday ataladi?",
             opts: ["A) Arxeologlar", "B) Antropologlar", "C) Etnograflar", "D) Numizmatlar"],
             ans: 1,
-            exp: "Antropologlar qadimgi odamlarning suyak qoldiqlarini o‘rganib, tashqi qiyofasini tiklaydilar."
+            exp: "Antropologlar qadimgi odamlarning suyak qoldiqlarini o'rganib, tashqi qiyofasini tiklaydilar."
           },
           {
-            q: "3. O‘rta Osiyo tarixi bo‘yicha eng qadimgi yozma manbalardan biri qaysi?",
+            q: "3. O'rta Osiyo tarixi bo'yicha eng qadimgi yozma manbalardan biri qaysi?",
             opts: ["A) «Tarix» kitobi", "B) Behistun qoyasi yozuvlari", "C) «Geografiya» asari", "D) «Avesto»"],
             ans: 3,
-            exp: "«Avesto» O‘rta Osiyo tarixi bo‘yicha eng qadimgi yozma manbalardan biridir."
+            exp: "«Avesto» O'rta Osiyo tarixi bo'yicha eng qadimgi yozma manbalardan biridir."
           },
           {
-            q: "4. Erondagi Behistun qoyasi yozuvlari qaysi fors shohining buyrug‘i bilan o‘yib yozilgan?",
+            q: "4. Erondagi Behistun qoyasi yozuvlari qaysi fors shohining buyrug'i bilan o'yib yozilgan?",
             opts: ["A) Doro I", "B) Kir II", "C) Kambiz II", "D) Kserks"],
             ans: 0,
-            exp: "Behistun qoyasi yozuvlari fors shohi Doro I buyrug‘i bilan o‘yib yozilgan."
+            exp: "Behistun qoyasi yozuvlari fors shohi Doro I buyrug'i bilan o'yib yozilgan."
           },
           {
-            q: "5. Tosh davri bosqichlarining to‘g‘ri xronologik ketma-ketligini belgilang.",
+            q: "5. Tosh davri bosqichlarining to'g'ri xronologik ketma-ketligini belgilang.",
             opts: [
               "A) Paleolit → Mezolit → Neolit → Eneolit",
               "B) Mezolit → Paleolit → Neolit → Eneolit",
@@ -801,10 +897,10 @@
       }
     };
 
-    var activeTopicKey = null;
-    var sessionSolved = 0;
-    var sessionRight = 0;
-    var sessionWrong = 0;
+    let activeTopicKey = null;
+    let topicSolved = 0;
+    let topicRight = 0;
+    let topicWrong = 0;
 
     function updateRatingView() {
       document.getElementById("allSolved").innerText = state.totalSolved;
@@ -812,48 +908,49 @@
       document.getElementById("allWrong").innerText = state.totalWrong;
       document.getElementById("profOrderId").innerText = "№ " + state.memberId;
 
-      var keys = Object.keys(state.topicMistakes || {});
-      var errItems = [];
-      for (var i = 0; i < keys.length; i++) {
-        var k = keys[i];
-        var cnt = state.topicMistakes[k];
+      const keys = Object.keys(state.topicMistakes || {});
+      const errItems = [];
+      for (let i = 0; i < keys.length; i++) {
+        const k = keys[i];
+        const cnt = state.topicMistakes[k];
         if (cnt > 0) {
-          var tName = quizData[k] ? quizData[k].title : k;
+          const tName = quizData[k] ? quizData[k].title : k;
           errItems.push({ name: tName, count: cnt });
         }
       }
 
       if (errItems.length === 0) {
-        document.getElementById("mistakeTopicsText").innerText = "Hozircha xato qayd etilmadi.";
-        document.getElementById("learnNextText").innerText = "Xato chiqqan mavzu paydo bo‘lishi bilan shu yerda takrorlash tavsiyasi chiqadi.";
+        document.getElementById("mistakeTopicsText").innerText = "Hali xato qayd etilmadi.";
+        document.getElementById("learnNextText").innerText = "Xato chiqqan mavzu paydo bo'lishi bilan shu yerda takrorlash tavsiyasi chiqadi.";
       } else {
-        errItems.sort(function (a, b) { return b.count - a.count; });
-        var parts = errItems.map(function (it) { return it.name + " (" + it.count + " ta xato)"; });
+        errItems.sort((a, b) => b.count - a.count);
+        const parts = errItems.map(it => `${it.name} (${it.count} ta xato)`);
         document.getElementById("mistakeTopicsText").innerText = parts.join("; ");
         document.getElementById("learnNextText").innerText =
-          "Birinchi navbatda «" + errItems[0].name + "» mavzusini qayta o‘rganib, savollarini yana ishlang.";
+          `Birinchi navbatda «${errItems[0].name}» mavzusini qayta o'rganib, savollarini yana ishlang.`;
       }
     }
 
     function openPage(name) {
-      document.querySelectorAll(".page").forEach(function (p) { p.classList.remove("active"); });
-      document.querySelectorAll(".nav-btn").forEach(function (b) { b.classList.remove("active"); });
+      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
 
-      var p = document.getElementById("page-" + name);
-      var b = document.getElementById("nav-" + name);
+      const p = document.getElementById("page-" + name);
+      const b = document.getElementById("nav-" + name);
       if (p) p.classList.add("active");
       if (b) b.classList.add("active");
 
-      var map = { home: "Bosh", subjects: "Fanlar", rating: "Reyting", profile: "Profil" };
+      const map = { home: "Bosh", subjects: "Fanlar", rating: "Reyting", profile: "Profil" };
       document.getElementById("topBadge").innerText = map[name] || "Mizon ta'lim";
+
       if (name === "subjects") openSub("sub-subjects-list", "Fanlar");
       if (name === "rating") updateRatingView();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function openSub(subId, badge) {
-      document.querySelectorAll(".subpage").forEach(function (s) { s.classList.remove("active"); });
-      var el = document.getElementById(subId);
+      document.querySelectorAll(".subpage").forEach(s => s.classList.remove("active"));
+      const el = document.getElementById(subId);
       if (el) el.classList.add("active");
       if (badge) document.getElementById("topBadge").innerText = badge;
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -865,77 +962,115 @@
     }
 
     function startTopic(key) {
-      var item = quizData[key];
+      const item = quizData[key];
       if (!item) return;
 
       activeTopicKey = key;
-      sessionSolved = 0;
-      sessionRight = 0;
-      sessionWrong = 0;
+      topicSolved = 0;
+      topicRight = 0;
+      topicWrong = 0;
 
       document.getElementById("quizTopicTitle").innerText = item.title;
-      document.getElementById("qSolved").innerText = "0 / " + item.questions.length;
-      document.getElementById("qRight").innerText = "0";
-      document.getElementById("qWrong").innerText = "0";
+      document.getElementById("quizResultCard").style.display = "none";
 
-      var cont = document.getElementById("quizContainer");
+      const cont = document.getElementById("quizContainer");
       cont.innerHTML = "";
 
-      for (var i = 0; i < item.questions.length; i++) {
-        var qObj = item.questions[i];
-        var card = document.createElement("div");
+      for (let i = 0; i < item.questions.length; i++) {
+        const qObj = item.questions[i];
+        const card = document.createElement("div");
         card.className = "q-card";
-        var h = "<div class='q-title'>" + qObj.q + "</div>";
-        for (var j = 0; j < qObj.opts.length; j++) {
-          h += "<button type='button' class='opt-btn' onclick=\"answerQ(this," + j + "," + qObj.ans + ",'ex-" + i + "')\">" + qObj.opts[j] + "</button>";
+
+        let html = `<div class="q-badge">Savol ${i + 1} / ${item.questions.length}</div>`;
+        html += `<div class="q-title">${qObj.q}</div>`;
+
+        for (let j = 0; j < qObj.opts.length; j++) {
+          html += `<button type="button" class="opt-btn" onclick="answerQ(this, ${i}, ${j}, ${qObj.ans}, 'ex-${i}')">${qObj.opts[j]}</button>`;
         }
-        h += "<div class='exp-box' id='ex-" + i + "'><b>Izoh:</b> " + qObj.exp + "</div>";
-        card.innerHTML = h;
+        html += `<div class="exp-box" id="ex-${i}">💡 <b>Izoh:</b> ${qObj.exp}</div>`;
+        card.innerHTML = html;
         cont.appendChild(card);
       }
 
       openSub("sub-quiz-play", "Test");
     }
 
-    function answerQ(btn, chosen, right, expId) {
-      var btns = btn.parentElement.querySelectorAll(".opt-btn");
-      for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+    function retryCurrentTopic() {
+      if (activeTopicKey) {
+        startTopic(activeTopicKey);
+      }
+    }
 
-      var totalInTopic = quizData[activeTopicKey].questions.length;
-      sessionSolved++;
+    function answerQ(btn, qIdx, chosen, right, expId) {
+      const parent = btn.parentElement;
+      const btns = parent.querySelectorAll(".opt-btn");
+      btns.forEach(b => b.disabled = true);
+
+      const totalInTopic = quizData[activeTopicKey].questions.length;
+      topicSolved++;
       state.totalSolved++;
 
       if (chosen === right) {
         btn.classList.add("ok");
-        sessionRight++;
+        topicRight++;
         state.totalRight++;
       } else {
         btn.classList.add("bad");
         btns[right].classList.add("ok");
-        sessionWrong++;
+        topicWrong++;
         state.totalWrong++;
         state.topicMistakes[activeTopicKey] = (state.topicMistakes[activeTopicKey] || 0) + 1;
       }
 
       saveStore(state);
+      updateRatingView();
 
-      document.getElementById("qSolved").innerText = sessionSolved + " / " + totalInTopic;
-      document.getElementById("qRight").innerText = sessionRight;
-      document.getElementById("qWrong").innerText = sessionWrong;
-
-      var exp = document.getElementById(expId);
+      const exp = document.getElementById(expId);
       if (exp) exp.style.display = "block";
 
-      updateRatingView();
+      if (topicSolved === totalInTopic) {
+        showFinalResult(totalInTopic, topicRight, topicWrong);
+      }
+    }
+
+    function showFinalResult(total, right, wrong) {
+      const pct = Math.round((right / total) * 100);
+
+      document.getElementById("resTotalQ").innerText = total;
+      document.getElementById("resCorrectQ").innerText = right;
+      document.getElementById("resWrongQ").innerText = wrong;
+      document.getElementById("resPercent").innerText = pct + "%";
+
+      const trophy = document.getElementById("resTrophy");
+      const headline = document.getElementById("resHeadline");
+      const subline = document.getElementById("resSubline");
+
+      if (pct >= 80) {
+        trophy.innerText = "🏆";
+        headline.innerText = "A'lo natija!";
+        subline.innerText = "Siz mavzuni juda chuqur va mustahkam o'zlashtiribsiz!";
+      } else if (pct >= 60) {
+        trophy.innerText = "🥈";
+        headline.innerText = "Yaxshi natija!";
+        subline.innerText = "Mavzu yaxshi o'zlashtirilgan, xatolar ustida ishlab 100% ga chiqaring.";
+      } else {
+        trophy.innerText = "📚";
+        headline.innerText = "Takrorlash tavsiya etiladi";
+        subline.innerText = "Ushbu mavzu bo'yicha qo'llanmani yana bir bor ko'rib chiqish foydali bo'ladi.";
+      }
+
+      const resCard = document.getElementById("quizResultCard");
+      resCard.style.display = "block";
+      resCard.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
     try {
       if (window.Telegram && window.Telegram.WebApp) {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
-        var u = window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user;
+        const u = window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user;
         if (u && u.first_name) {
-          var n = u.first_name.trim();
+          const n = u.first_name.trim();
           document.getElementById("greetTitle").innerText = "Xush kelibsiz, " + n + "!";
           document.getElementById("profName").innerText = n;
         }
