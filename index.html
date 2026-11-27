@@ -34,7 +34,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
       color: var(--text-main);
-      font-size: 16px;
+      font-size: 16.5px;
       line-height: 1.6;
       padding-bottom: 96px;
       min-height: 100vh;
@@ -46,6 +46,7 @@
       padding: 16px 14px;
     }
 
+    /* TEPADAGI MIZON TA'LIM */
     .header-bar {
       display: flex;
       align-items: center;
@@ -74,7 +75,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 800;
       flex-shrink: 0;
     }
@@ -87,7 +88,7 @@
     }
 
     .brand-text p {
-      font-size: 13.5px;
+      font-size: 14px;
       color: var(--text-muted);
     }
 
@@ -95,18 +96,19 @@
       background: var(--gold-soft);
       color: #8c5b14;
       border: 1px solid var(--gold-border);
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 700;
       padding: 6px 13px;
       border-radius: 999px;
       white-space: nowrap;
     }
 
+    /* BIRINCHI RASMDAGI MATN */
     .greeting-card {
       background: var(--navy-card);
       color: #ffffff;
       border-radius: 22px;
-      padding: 22px 20px;
+      padding: 24px 20px;
       margin-bottom: 18px;
       box-shadow: 0 12px 30px rgba(19, 36, 58, 0.18);
     }
@@ -114,16 +116,18 @@
     .greeting-title {
       font-size: 22px;
       font-weight: 800;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       line-height: 1.3;
+      color: #ffffff;
     }
 
     .greeting-desc {
-      font-size: 15px;
+      font-size: 15.5px;
       color: #f0f4f9;
-      line-height: 1.58;
+      line-height: 1.6;
     }
 
+    /* ASOSIY OYNALAR */
     .content-box {
       background: var(--surface);
       border: 1px solid var(--border-color);
@@ -141,7 +145,7 @@
     }
 
     .section-desc {
-      font-size: 14.5px;
+      font-size: 15px;
       color: var(--text-muted);
       margin-bottom: 16px;
       line-height: 1.55;
@@ -152,11 +156,12 @@
       border: 1px solid var(--border-color);
       border-left: 5px solid var(--gold-accent);
       border-radius: var(--radius-md);
-      padding: 15px 16px;
+      padding: 16px;
       font-size: 15px;
       line-height: 1.55;
     }
 
+    /* RO'YXATLAR */
     .item-list {
       display: flex;
       flex-direction: column;
@@ -211,14 +216,14 @@
     }
 
     .row-title {
-      font-size: 16px;
+      font-size: 16.5px;
       font-weight: 700;
       color: var(--text-main);
       line-height: 1.35;
     }
 
     .row-sub {
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--text-muted);
       margin-top: 2px;
       line-height: 1.4;
@@ -238,7 +243,7 @@
       color: #ffffff;
     }
 
-    .tag-soon {
+    .tag-item {
       background: var(--card-subtle);
       color: var(--text-muted);
       border: 1px solid var(--border-color);
@@ -343,6 +348,7 @@
       line-height: 1.5;
     }
 
+    /* PASTKI 4 TA TUGMA */
     .bottom-bar {
       position: fixed;
       left: 0;
@@ -403,329 +409,186 @@
         <div class="brand-icon">M</div>
         <div class="brand-text">
           <h1>MIZON TA'LIM</h1>
-          <p>O'quv va tayyorgarlik maskani</p>
+          <p>O'quv maskani</p>
         </div>
       </div>
-      <div class="status-badge" id="currentTabLabel">Bosh sahifa</div>
+      <div class="status-badge" id="currentTabLabel">Bosh</div>
     </header>
 
+    <!-- 1-RASMDAGI ANIQ MATN -->
     <section class="greeting-card">
       <h2 class="greeting-title" id="userGreeting">Xush kelibsiz, Ulug'bek!</h2>
       <p class="greeting-desc">
-        Bizning Mizon ta'limda attestatsiya, milliy sertifikat va oliy o'quv yurtiga tayyorgarlik ko'rish jarayonini tartibli boshlashingiz mumkin.
+        Bizning Mizon ta'limdan attestatsiya, milliy sertifikat va oliy o'quv yurtiga tayyorgarlik ko'rishingizni boshlashingiz mumkin.
       </p>
     </section>
 
-    <!-- 1. BOSH SAHIFA -->
+    <!-- 1. BOSH -->
     <div id="tab-home" class="tab-section active-tab">
       <div class="content-box">
         <div class="section-title">Bosh sahifa</div>
-        <p class="section-desc">
-          Mizon ta'lim — fanlar bo'yicha testlar, qo'llanmalar, audio va video darslar hamda attestatsiya va milliy sertifikatga tayyorgarlik platformasi.
-        </p>
         <div class="home-banner">
-          👉 O'rganishni boshlash uchun pastdagi <b>«Fanlar»</b> tugmasini bosing va Tarix yoki boshqa fanni tanlang.
+          Mavjud fanlar bilan tanishish va tayyorgarlikni boshlash uchun pastdagi <b>Fanlar</b> bo'limiga kiring.
         </div>
       </div>
     </div>
 
-    <!-- 2. FANLAR BO'LIMI -->
+    <!-- 2. FANLAR -->
     <div id="tab-subjects" class="tab-section">
-      <!-- 1-bosqich: 18 ta fan ro'yxati -->
+      <!-- 18 ta fan ro'yxati -->
       <div class="content-box sub-view active-sub" id="view-subjects-list">
-        <div class="section-title">Maktab fanlari</div>
-        <p class="section-desc">1-o'rinda Tarix, undan keyin alifbo tartibida maktab fanlari:</p>
-
+        <div class="section-title">Fanlar</div>
         <div class="item-list">
-          <!-- 1. Tarix (Faol) -->
+          <!-- 1. Tarix (Birinchi o'rinda) -->
           <div class="card-row highlight" onclick="openHistoryHub()">
             <div class="row-left">
               <div class="icon-box">📜</div>
               <div>
                 <div class="row-title">1. Tarix</div>
-                <div class="row-sub">Test, qo'llanma, audio, video, sinflar (6–11)</div>
+                <div class="row-sub">7 ta bo'lim</div>
               </div>
             </div>
             <span class="tag tag-open">Ochish →</span>
           </div>
 
-          <div class="card-row"><div class="row-left"><div class="icon-box">🌿</div><div><div class="row-title">2. Biologiya</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">✏️</div><div><div class="row-title">3. Boshlang'ich ta'lim</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">⚖️</div><div><div class="row-title">4. Davlat va huquq asoslari</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">⚡</div><div><div class="row-title">5. Fizika</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">🌍</div><div><div class="row-title">6. Geografiya</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">💻</div><div><div class="row-title">7. Informatika va axborot texnologiyalari</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">🇬🇧</div><div><div class="row-title">8. Ingliz tili</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">📊</div><div><div class="row-title">9. Iqtisodiy bilim asoslari</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">⚽</div><div><div class="row-title">10. Jismoniy tarbiya</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">🧪</div><div><div class="row-title">11. Kimyo</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">📐</div><div><div class="row-title">12. Matematika</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">🎵</div><div><div class="row-title">13. Musiqa madaniyati</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">📖</div><div><div class="row-title">14. Ona tili va adabiyot</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">🇷🇺</div><div><div class="row-title">15. Rus tili</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">🤝</div><div><div class="row-title">16. Tarbiya</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">🎨</div><div><div class="row-title">17. Tasviriy san'at va chizmachilik</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
-          <div class="card-row"><div class="row-left"><div class="icon-box">🛠️</div><div><div class="row-title">18. Texnologiya</div></div></div><span class="tag tag-soon">Tez kunda</span></div>
+          <!-- Qolgan fanlar alifbo tartibida -->
+          <div class="card-row"><div class="row-left"><div class="icon-box">🌿</div><div><div class="row-title">2. Biologiya</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">✏️</div><div><div class="row-title">3. Boshlang'ich ta'lim</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">⚖️</div><div><div class="row-title">4. Davlat va huquq asoslari</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">⚡</div><div><div class="row-title">5. Fizika</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">🌍</div><div><div class="row-title">6. Geografiya</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">💻</div><div><div class="row-title">7. Informatika va axborot texnologiyalari</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">🇬🇧</div><div><div class="row-title">8. Ingliz tili</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">📊</div><div><div class="row-title">9. Iqtisodiy bilim asoslari</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">⚽</div><div><div class="row-title">10. Jismoniy tarbiya</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">🧪</div><div><div class="row-title">11. Kimyo</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">📐</div><div><div class="row-title">12. Matematika</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">🎵</div><div><div class="row-title">13. Musiqa madaniyati</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">📖</div><div><div class="row-title">14. Ona tili va adabiyot</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">🇷🇺</div><div><div class="row-title">15. Rus tili</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">🤝</div><div><div class="row-title">16. Tarbiya</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">🎨</div><div><div class="row-title">17. Tasviriy san'at va chizmachilik</div></div></div><span class="tag tag-item">Fan</span></div>
+          <div class="card-row"><div class="row-left"><div class="icon-box">🛠️</div><div><div class="row-title">18. Texnologiya</div></div></div><span class="tag tag-item">Fan</span></div>
         </div>
       </div>
 
-      <!-- 2-bosqich: Tarix ichidagi 7 ta yo'nalish -->
+      <!-- Tarix ichidagi 7 ta yo'nalish -->
       <div class="content-box sub-view" id="view-history-hub">
         <button class="back-nav-btn" onclick="openSubView('view-subjects-list', 'Fanlar')">← Fanlar ro'yxatiga qaytish</button>
-        <div class="section-title">Tarix — o'quv va tayyorgarlik bo'limlari</div>
-        <p class="section-desc">Kerakli ta'lim bo'limini tanlang:</p>
+        <div class="section-title">Tarix</div>
+        <p class="section-desc">Bo'limni tanlang:</p>
 
         <div class="item-list">
           <div class="card-row" onclick="openClassesView('test')">
-            <div class="row-left">
-              <div class="icon-box">📝</div>
-              <div>
-                <div class="row-title">1. Test</div>
-                <div class="row-sub">6–11-sinflar darsliklari bo'yicha mavzulashgan testlar</div>
-              </div>
-            </div>
+            <div class="row-left"><div class="icon-box">📝</div><div class="row-title">1. Test</div></div>
             <span class="tag tag-open">Ochish →</span>
           </div>
-
           <div class="card-row" onclick="openClassesView('qollanma')">
-            <div class="row-left">
-              <div class="icon-box">📘</div>
-              <div>
-                <div class="row-title">2. Qo'llanma</div>
-                <div class="row-sub">6–11-sinflar bo'yicha darslik konspektlari va qo'llanmalar</div>
-              </div>
-            </div>
+            <div class="row-left"><div class="icon-box">📘</div><div class="row-title">2. Qo'llanma</div></div>
             <span class="tag tag-open">Ochish →</span>
           </div>
-
           <div class="card-row" onclick="openClassesView('audio')">
-            <div class="row-left">
-              <div class="icon-box">🎧</div>
-              <div>
-                <div class="row-title">3. Audio yozuv</div>
-                <div class="row-sub">6–11-sinflar mavzularining audio tahlillari</div>
-              </div>
-            </div>
+            <div class="row-left"><div class="icon-box">🎧</div><div class="row-title">3. Audio yozuv</div></div>
             <span class="tag tag-open">Ochish →</span>
           </div>
-
           <div class="card-row" onclick="openClassesView('video')">
-            <div class="row-left">
-              <div class="icon-box">🎬</div>
-              <div>
-                <div class="row-title">4. Video yozuv</div>
-                <div class="row-sub">6–11-sinflar bo'yicha videodarslar va xaritalar tahlili</div>
-              </div>
-            </div>
+            <div class="row-left"><div class="icon-box">🎬</div><div class="row-title">4. Video yozuv</div></div>
             <span class="tag tag-open">Ochish →</span>
           </div>
-
           <div class="card-row" onclick="openSpecialModule('sertifikat')">
-            <div class="row-left">
-              <div class="icon-box">✅</div>
-              <div>
-                <div class="row-title">5. Milliy sertifikat testi</div>
-                <div class="row-sub">Milliy sertifikat formati va ko'p tanlovli savollar</div>
-              </div>
-            </div>
+            <div class="row-left"><div class="icon-box">✅</div><div class="row-title">5. Milliy sertifikat testi</div></div>
             <span class="tag tag-open">Ochish →</span>
           </div>
-
           <div class="card-row" onclick="openSpecialModule('attestatsiya')">
-            <div class="row-left">
-              <div class="icon-box">🏅</div>
-              <div>
-                <div class="row-title">6. Attestatsiya testi</div>
-                <div class="row-sub">O'qituvchilar attestatsiyasi uchun maxsus sinovlar</div>
-              </div>
-            </div>
+            <div class="row-left"><div class="icon-box">🏅</div><div class="row-title">6. Attestatsiya testi</div></div>
             <span class="tag tag-open">Ochish →</span>
           </div>
-
           <div class="card-row" onclick="openSpecialModule('ped_mahorat')">
-            <div class="row-left">
-              <div class="icon-box">🎓</div>
-              <div>
-                <div class="row-title">7. Attestatsiya: pedagog mahorat, kasbiy mahorat va darsliklar testlari</div>
-                <div class="row-sub">Pedagogik mahorat, kasbiy metodika va darsliklar testi</div>
-              </div>
-            </div>
+            <div class="row-left"><div class="icon-box">🎓</div><div class="row-title">7. Attestatsiya: pedagog mahorat, kasbiy mahorat va darsliklar testlari</div></div>
             <span class="tag tag-open">Ochish →</span>
           </div>
         </div>
       </div>
 
-      <!-- 3-bosqich: Sinflar tanlovi (6-sinfdan 11-sinfgacha) -->
+      <!-- Sinflar tanlovi (6–11) -->
       <div class="content-box sub-view" id="view-classes">
         <button class="back-nav-btn" onclick="openSubView('view-history-hub', 'Tarix')">← Tarix bo'limlariga qaytish</button>
         <div class="section-title" id="classesSectionTitle">Sinfni tanlang</div>
-        <p class="section-desc" id="classesSectionDesc">O'rganmoqchi bo'lgan sinf darsligini tanlang:</p>
-
         <div class="item-list">
           <div class="card-row highlight" onclick="openGradeContent(6)">
-            <div class="row-left">
-              <div class="icon-box">6</div>
-              <div>
-                <div class="row-title">6-sinf. Qadimgi dunyo tarixi</div>
-                <div class="row-sub">44 ta mavzu, 1199 ta test to'plami</div>
-              </div>
-            </div>
+            <div class="row-left"><div class="icon-box">6</div><div><div class="row-title">6-sinf. Qadimgi dunyo tarixi</div></div></div>
             <span class="tag tag-open">Tanlash →</span>
           </div>
-
           <div class="card-row" onclick="openGradeContent(7)">
-            <div class="row-left">
-              <div class="icon-box">7</div>
-              <div>
-                <div class="row-title">7-sinf. O'zbekiston tarixi va Jahon tarixi</div>
-                <div class="row-sub">O'rta asrlar davri</div>
-              </div>
-            </div>
-            <span class="tag tag-soon">Kutilmoqda</span>
+            <div class="row-left"><div class="icon-box">7</div><div><div class="row-title">7-sinf</div></div></div>
+            <span class="tag tag-item">Kutilmoqda</span>
           </div>
-
           <div class="card-row" onclick="openGradeContent(8)">
-            <div class="row-left">
-              <div class="icon-box">8</div>
-              <div>
-                <div class="row-title">8-sinf. O'zbekiston tarixi va Jahon tarixi</div>
-                <div class="row-sub">XVI–XIX asrning birinchi yarmi</div>
-              </div>
-            </div>
-            <span class="tag tag-soon">Kutilmoqda</span>
+            <div class="row-left"><div class="icon-box">8</div><div><div class="row-title">8-sinf</div></div></div>
+            <span class="tag tag-item">Kutilmoqda</span>
           </div>
-
           <div class="card-row" onclick="openGradeContent(9)">
-            <div class="row-left">
-              <div class="icon-box">9</div>
-              <div>
-                <div class="row-title">9-sinf. O'zbekiston tarixi va Jahon tarixi</div>
-                <div class="row-sub">XIX asrning ikkinchi yarmi – XX asr boshi</div>
-              </div>
-            </div>
-            <span class="tag tag-soon">Kutilmoqda</span>
+            <div class="row-left"><div class="icon-box">9</div><div><div class="row-title">9-sinf</div></div></div>
+            <span class="tag tag-item">Kutilmoqda</span>
           </div>
-
           <div class="card-row" onclick="openGradeContent(10)">
-            <div class="row-left">
-              <div class="icon-box">10</div>
-              <div>
-                <div class="row-title">10-sinf. O'zbekiston tarixi va Jahon tarixi</div>
-                <div class="row-sub">Eng yangi tarix (I qism)</div>
-              </div>
-            </div>
-            <span class="tag tag-soon">Kutilmoqda</span>
+            <div class="row-left"><div class="icon-box">10</div><div><div class="row-title">10-sinf</div></div></div>
+            <span class="tag tag-item">Kutilmoqda</span>
           </div>
-
           <div class="card-row" onclick="openGradeContent(11)">
-            <div class="row-left">
-              <div class="icon-box">11</div>
-              <div>
-                <div class="row-title">11-sinf. O'zbekiston tarixi va Jahon tarixi</div>
-                <div class="row-sub">Eng yangi tarix (II qism) va mustaqillik davri</div>
-              </div>
-            </div>
-            <span class="tag tag-soon">Kutilmoqda</span>
+            <div class="row-left"><div class="icon-box">11</div><div><div class="row-title">11-sinf</div></div></div>
+            <span class="tag tag-item">Kutilmoqda</span>
           </div>
         </div>
       </div>
 
-      <!-- 4-bosqich: 6-sinf mavzulari ro'yxati -->
+      <!-- 6-sinf mavzulari -->
       <div class="content-box sub-view" id="view-grade6-topics">
-        <button class="back-nav-btn" onclick="openSubView('view-classes', 'Sinflar')">← Sinflar ro'yxatiga qaytish</button>
-        <div class="section-title">6-sinf Qadimgi dunyo tarixi — Mavzular</div>
-        <p class="section-desc">Mavzuni tanlang va boshlang:</p>
-
+        <button class="back-nav-btn" onclick="openSubView('view-classes', 'Sinflar')">← Sinflarga qaytish</button>
+        <div class="section-title">6-sinf Qadimgi dunyo tarixi</div>
         <div class="item-list">
           <div class="card-row" onclick="startTopicQuiz('kirish')">
-            <div class="row-left">
-              <div class="icon-box">📖</div>
-              <div>
-                <div class="row-title">KIRISH. Qadimgi dunyo tarixiga kirish</div>
-                <div class="row-sub">5–6-betlar • 5 ta namunaviy test</div>
-              </div>
-            </div>
-            <span class="tag tag-open">Boshlash</span>
+            <div class="row-left"><div class="icon-box">📖</div><div><div class="row-title">KIRISH. Qadimgi dunyo tarixiga kirish</div><div class="row-sub">5–6-betlar</div></div></div>
+            <span class="tag tag-open">Ochish</span>
           </div>
-
           <div class="card-row" onclick="startTopicQuiz('p1')">
-            <div class="row-left">
-              <div class="icon-box">⛏️</div>
-              <div>
-                <div class="row-title">1-§. Qadimgi tarix ildizlari</div>
-                <div class="row-sub">7–10-betlar • 5 ta namunaviy test</div>
-              </div>
-            </div>
-            <span class="tag tag-open">Boshlash</span>
-          </div>
-
-          <div class="card-row" style="opacity:0.75;">
-            <div class="row-left">
-              <div class="icon-box">🦴</div>
-              <div>
-                <div class="row-title">2-§. Eng qadimgi odamlarning rivojlanishi</div>
-                <div class="row-sub">11–16-betlar • 30 ta test</div>
-              </div>
-            </div>
-            <span class="tag tag-soon">Keyingi bosqich</span>
-          </div>
-
-          <div class="card-row" style="opacity:0.75;">
-            <div class="row-left">
-              <div class="icon-box">🏹</div>
-              <div>
-                <div class="row-title">3-§. Urug'chilik jamiyati</div>
-                <div class="row-sub">17–20-betlar • 28 ta test</div>
-              </div>
-            </div>
-            <span class="tag tag-soon">Keyingi bosqich</span>
+            <div class="row-left"><div class="icon-box">⛏️</div><div><div class="row-title">1-§. Qadimgi tarix ildizlari</div><div class="row-sub">7–10-betlar</div></div></div>
+            <span class="tag tag-open">Ochish</span>
           </div>
         </div>
       </div>
 
-      <!-- 5-bosqich: Test o'ynash / Qo'llanma o'qish oynasi -->
+      <!-- Kontent oynasi (Savollar / Qo'llanma) -->
       <div class="content-box sub-view" id="view-content-display">
         <button class="back-nav-btn" id="displayBackBtn" onclick="goBackFromDisplay()">← Orqaga</button>
         <div class="section-title" id="displayTitle">Mavzu</div>
-        <p class="section-desc" id="displayDesc"></p>
         <div id="displayBody"></div>
       </div>
     </div>
 
-    <!-- 3. REYTING BO'LIMI -->
+    <!-- 3. REYTING -->
     <div id="tab-rating" class="tab-section">
       <div class="content-box">
-        <div class="section-title">Foydalanuvchi reytingi</div>
-        <p class="section-desc">Testlarni ishlash jarayonida to'plagan to'g'ri javoblaringiz shu yerda hisoblanadi:</p>
+        <div class="section-title">Reyting</div>
         <div class="home-banner" id="ratingScoreBox">
-          🎉 Hozircha to'plangan natija: <b>0 ta to'g'ri javob</b>.<br>
-          <span style="font-size:13.5px;color:var(--text-muted);">Mavzulashgan testlarni yechishni boshlang va balingizni oshiring!</span>
+          To'plangan to'g'ri javoblar: <b>0 ta</b>
         </div>
       </div>
     </div>
 
-    <!-- 4. PROFIL BO'LIMI -->
+    <!-- 4. PROFIL -->
     <div id="tab-profile" class="tab-section">
       <div class="content-box">
-        <div class="section-title">Foydalanuvchi profili</div>
-        <p class="section-desc">Shaxsiy hisobingiz ma'lumotlari:</p>
-
-        <div style="display:flex; flex-direction:column; gap:10px; margin-top:14px;">
-          <div style="background:var(--card-subtle); padding:14px; border-radius:12px; border:1px solid var(--border-color);">
-            <div style="font-size:13px; color:var(--text-muted);">Foydalanuvchi:</div>
-            <div style="font-size:16px; font-weight:800; color:var(--navy-main);" id="profileName">Ulug'bek</div>
-          </div>
-
-          <div style="background:var(--card-subtle); padding:14px; border-radius:12px; border:1px solid var(--border-color);">
-            <div style="font-size:13px; color:var(--text-muted);">Platforma:</div>
-            <div style="font-size:16px; font-weight:800; color:var(--navy-main);">MIZON TA'LIM</div>
-          </div>
+        <div class="section-title">Profil</div>
+        <div style="background:var(--card-subtle); padding:16px; border-radius:12px; border:1px solid var(--border-color);">
+          <div style="font-size:14px; color:var(--text-muted); margin-bottom:4px;">Foydalanuvchi:</div>
+          <div style="font-size:18px; font-weight:800; color:var(--navy-main);" id="profileName">Ulug'bek</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PASTKI FAQAT 4 TA TUGMA -->
+  <!-- PASTKI FAQAT 4 TA TUGMA (Bosh, Fanlar, Reyting, Profil) -->
   <nav class="bottom-bar">
     <button class="nav-link active" id="btn-home" onclick="navTo('home')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -763,7 +626,6 @@
     const testBank = {
       kirish: {
         title: "KIRISH. Qadimgi dunyo tarixiga kirish",
-        desc: "5–6-betlar bo'yicha tuzilgan savollar. To'g'ri javobni tanlang:",
         items: [
           {
             q: "1. Tarix fanida qadimgi dunyo tarixi qaysi voqeaga qadar bo'lgan davrni o'z ichiga oladi?",
@@ -824,7 +686,6 @@
       },
       p1: {
         title: "1-§. Qadimgi tarix ildizlari",
-        desc: "7–10-betlar bo'yicha tuzilgan savollar. To'g'ri javobni tanlang:",
         items: [
           {
             q: "1. Qadim zamonlarda odamlar yashagan manzilgohlar va turarjoylarda qazishma ishlarini olib boradigan olimlar kimlar?",
@@ -875,7 +736,7 @@
       if (targetBtn) targetBtn.classList.add('active');
 
       const label = document.getElementById('currentTabLabel');
-      if (tab === 'home') label.innerText = "Bosh sahifa";
+      if (tab === 'home') label.innerText = "Bosh";
       if (tab === 'subjects') {
         label.innerText = "Fanlar";
         openSubView('view-subjects-list', 'Fanlar');
@@ -901,29 +762,26 @@
     function openClassesView(mode) {
       currentMode = mode;
       const titleMap = {
-        test: "1. Test — Sinfni tanlang",
-        qollanma: "2. Qo'llanma — Sinfni tanlang",
-        audio: "3. Audio yozuv — Sinfni tanlang",
-        video: "4. Video yozuv — Sinfni tanlang"
+        test: "1. Test",
+        qollanma: "2. Qo'llanma",
+        audio: "3. Audio yozuv",
+        video: "4. Video yozuv"
       };
       document.getElementById('classesSectionTitle').innerText = titleMap[mode] || "Sinfni tanlang";
-      document.getElementById('classesSectionDesc').innerText = "6-sinfdan 11-sinfgacha bo'lgan darsliklar bo'yicha tanlang:";
-      openSubView('view-classes', 'Sinflar (6–11)');
+      openSubView('view-classes', 'Sinflar');
     }
 
     function openGradeContent(grade) {
       if (grade === 6) {
         if (currentMode === 'test') {
-          openSubView('view-grade6-topics', '6-sinf Tarix');
+          openSubView('view-grade6-topics', '6-sinf');
         } else if (currentMode === 'qollanma') {
           renderGuideView(6);
-        } else if (currentMode === 'audio') {
-          renderMediaView('audio', 6);
-        } else if (currentMode === 'video') {
-          renderMediaView('video', 6);
+        } else if (currentMode === 'audio' || currentMode === 'video') {
+          renderMediaView(currentMode, 6);
         }
       } else {
-        alert(grade + "-sinf ma'lumotlari keyingi bosqichda kiritiladi. Hozir 6-sinf Qadimgi dunyo tarixi to'liq tayyor!");
+        alert(grade + "-sinf ma'lumotlari kutilmoqda. Hozir 6-sinf faol.");
       }
     }
 
@@ -932,8 +790,7 @@
       if (!qData) return;
 
       document.getElementById('displayTitle').innerText = qData.title;
-      document.getElementById('displayDesc').innerText = qData.desc;
-      document.getElementById('displayBackBtn').setAttribute('onclick', "openSubView('view-grade6-topics', '6-sinf Tarix')");
+      document.getElementById('displayBackBtn').setAttribute('onclick', "openSubView('view-grade6-topics', '6-sinf')");
 
       const body = document.getElementById('displayBody');
       body.innerHTML = "";
@@ -954,13 +811,13 @@
         card.innerHTML = `
           <div class="q-badge">Savol ${idx + 1} / ${qData.items.length}</div>
           <div class="q-text">${item.q}</div>
-          <div class="opts-group">${optsHtml}</div>
+          <div>${optsHtml}</div>
           <div class="exp-box" id="exp-${topicKey}-${idx}">💡 <b>Izoh:</b> ${item.exp}</div>
         `;
         body.appendChild(card);
       });
 
-      openSubView('view-content-display', 'Test yechish');
+      openSubView('view-content-display', 'Savollar');
     }
 
     function checkOption(btn, chosen, correct, expId) {
@@ -980,39 +837,36 @@
       if (exp) exp.style.display = 'block';
 
       document.getElementById('ratingScoreBox').innerHTML = `
-        🎉 <b>Siz to'plagan natija:</b> ${userScore} ta to'g'ri javob!<br>
-        <span style="font-size:13.5px;color:var(--text-muted);">Mavzulashgan testlarni yechishda davom eting va natijangizni oshiring!</span>
+        To'plangan to'g'ri javoblar: <b>${userScore} ta</b>
       `;
     }
 
     function renderGuideView(grade) {
       document.getElementById('displayTitle').innerText = grade + "-sinf Tarix — Qo'llanma";
-      document.getElementById('displayDesc').innerText = "Darslik mavzulari bo'yicha tayanch konspekt va izohli ma'lumotlar:";
       document.getElementById('displayBackBtn').setAttribute('onclick', "openSubView('view-classes', 'Sinflar')");
 
       document.getElementById('displayBody').innerHTML = `
         <div class="info-block">
           <h4>KIRISH. Qadimgi dunyo tarixiga kirish (5–6-betlar)</h4>
-          <p>Qadimgi dunyo tarixi odam paydo bo'lganidan to milodiy 476-yilda G'arbiy Rim imperiyasi qulaguniga qadar bo'lgan davrni o'z ichiga oladi. Asosiy manbalar arxeologik va yozma manbalarga bo'linadi.</p>
+          <p>Qadimgi dunyo tarixi odam paydo bo'lganidan to milodiy 476-yilda G'arbiy Rim imperiyasi qulaguniga qadar bo'lgan davrni o'z ichiga oladi. Manbalar: arxeologik va yozma.</p>
         </div>
         <div class="info-block">
           <h4>1-§. Qadimgi tarix ildizlari (7–10-betlar)</h4>
-          <p>Arxeologlar qazishmalar o'tkazadi, antropologlar suyak qoldiqlaridan qiyofani tiklaydi. O'rta Osiyo bo'yicha eng qadimgi yozma manba — «Avesto». Tosh davri: paleolit, mezolit, neolit, eneolit.</p>
+          <p>Arxeologlar qazishmalar o'tkazadi, antropologlar suyak qoldiqlaridan tashqi qiyofani tiklaydi. O'rta Osiyo bo'yicha eng qadimgi yozma manba — «Avesto». Tosh davri: paleolit, mezolit, neolit, eneolit.</p>
         </div>
       `;
-      openSubView('view-content-display', 'Qo\'llanma');
+      openSubView('view-content-display', "Qo'llanma");
     }
 
     function renderMediaView(type, grade) {
       const isAudio = type === 'audio';
-      document.getElementById('displayTitle').innerText = grade + "-sinf Tarix — " + (isAudio ? "Audio yozuvlar" : "Video yozuvlar");
-      document.getElementById('displayDesc').innerText = isAudio ? "Darslik mavzulari bo'yicha audio darslar va tahlillar:" : "Mavzular bo'yicha video darslar va xarita tahlillari:";
+      document.getElementById('displayTitle').innerText = grade + "-sinf Tarix — " + (isAudio ? "Audio yozuv" : "Video yozuv");
       document.getElementById('displayBackBtn').setAttribute('onclick', "openSubView('view-classes', 'Sinflar')");
 
       document.getElementById('displayBody').innerHTML = `
         <div class="info-block">
-          <h4>${isAudio ? '🎧 Audio darslar to\'plami' : '🎬 Video darslar to\'plami'}</h4>
-          <p>${grade}-sinf Qadimgi dunyo tarixi bo'yicha ${isAudio ? 'audio tushuntirishlar' : 'video darslar'} keyingi bosqichda to'liq havolalar bilan ulanadi.</p>
+          <h4>${isAudio ? '🎧 Audio yozuvlar' : '🎬 Video yozuvlar'}</h4>
+          <p>${grade}-sinf bo'yicha ${isAudio ? 'audio tahlillar' : 'videodarslar'} keyingi bosqichda to'liq ulanadi.</p>
         </div>
       `;
       openSubView('view-content-display', isAudio ? 'Audio' : 'Video');
@@ -1024,34 +878,31 @@
 
       if (type === 'sertifikat') {
         document.getElementById('displayTitle').innerText = "5. Milliy sertifikat testi";
-        document.getElementById('displayDesc').innerText = "Milliy sertifikat formati va ko'p tanlovli savollar:";
         body.innerHTML = `
           <div class="info-block">
-            <h4>Milliy sertifikat sinovi</h4>
-            <p>Ushbu bo'limda 6–11-sinf darsliklari integratsiyasidagi milliy sertifikat darajasidagi testlar jamlanadi.</p>
+            <h4>Milliy sertifikat</h4>
+            <p>Milliy sertifikat formati bo'yicha savollar to'plami.</p>
           </div>
         `;
       } else if (type === 'attestatsiya') {
         document.getElementById('displayTitle').innerText = "6. Attestatsiya testi";
-        document.getElementById('displayDesc').innerText = "O'qituvchilar attestatsiyasi uchun testlar:";
         body.innerHTML = `
           <div class="info-block">
-            <h4>Attestatsiya testlari to'plami</h4>
-            <p>O'qituvchilarning malaka toifasini oshirish uchun attestatsiya formati testlari.</p>
+            <h4>Attestatsiya</h4>
+            <p>O'qituvchilar attestatsiyasi uchun sinovlar.</p>
           </div>
         `;
       } else if (type === 'ped_mahorat') {
         document.getElementById('displayTitle').innerText = "7. Attestatsiya: pedagog mahorat, kasbiy mahorat va darsliklar testlari";
-        document.getElementById('displayDesc').innerText = "Pedagogik mahorat, kasbiy kompetensiya va darsliklar mazmuni testi:";
         body.innerHTML = `
           <div class="info-block">
             <h4>Pedagogik va kasbiy mahorat</h4>
-            <p>Attestatsiya jarayonidagi pedagogik mahorat, kasbiy standartlar va darslik metodikasi bo'yicha savollar.</p>
+            <p>Pedagogik mahorat, kasbiy metodika hamda maktab darsliklari testi.</p>
           </div>
         `;
       }
 
-      openSubView('view-content-display', 'Attestatsiya / Sertifikat');
+      openSubView('view-content-display', 'Bo\'lim');
     }
 
     function goBackFromDisplay() {
