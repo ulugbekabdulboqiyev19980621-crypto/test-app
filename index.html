@@ -2,103 +2,881 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Mizon ta'lim</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; background: #faf6f0; color: #1c2430; margin: 0; padding: 14px 14px 80px; }
-    .box { max-width: 600px; margin: 0 auto; background: #fffdf9; border: 1px solid #eadfce; border-radius: 16px; padding: 16px; margin-bottom: 12px; }
-    .hero { background: #1e3a5f; color: #fff; border-radius: 18px; padding: 18px; margin-bottom: 12px; }
-    .btn { background: #f3c97b; color: #2b1a03; border: none; border-radius: 10px; padding: 9px 12px; font-weight: bold; cursor: pointer; margin-right: 6px; margin-top: 8px; }
-    .btn-light { background: #ffffff; color: #1e3a5f; }
-    .item { background: #faf6f0; border: 1px solid #eadfce; border-radius: 12px; padding: 11px 13px; margin-bottom: 8px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; }
-    .opt { display: block; width: 100%; text-align: left; background: #faf6f0; border: 1px solid #eadfce; border-radius: 10px; padding: 9px 12px; margin-top: 6px; cursor: pointer; }
-    .ok { background: #d8f3dc; border-color: #52b788; }
-    .bad { background: #ffd6d6; border-color: #e63946; }
-    .exp { display: none; margin-top: 8px; padding: 8px; background: #fdf2e0; border-radius: 8px; font-size: 13px; }
-    .nav { position: fixed; left: 0; right: 0; bottom: 0; background: #fffdf9; border-top: 1px solid #eadfce; display: flex; }
-    .nav button { flex: 1; padding: 12px 6px; border: none; background: none; font-weight: bold; color: #1e3a5f; cursor: pointer; }
+    :root {
+      --bg: #f8f5f0;
+      --surface: #ffffff;
+      --card-subtle: #f3eee6;
+      --text-main: #1e2633;
+      --text-muted: #576474;
+      --navy-main: #182d49;
+      --navy-card: linear-gradient(135deg, #1f385c 0%, #13243a 100%);
+      --gold-accent: #d49a3d;
+      --gold-soft: #fcf3e3;
+      --gold-border: #e9cf9d;
+      --border-color: #e5dcd0;
+      --shadow: 0 8px 24px rgba(24, 45, 73, 0.06);
+      --shadow-hover: 0 10px 28px rgba(24, 45, 73, 0.12);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      font-size: 16px;
+      line-height: 1.6;
+      padding-bottom: 95px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 16px 14px;
+    }
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--navy-card);
+      color: #fce8c5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(24, 45, 73, 0.18);
+    }
+
+    .brand-text h1 {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--navy-main);
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .brand-text p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .status-badge {
+      background: var(--gold-soft);
+      color: #8c5b14;
+      border: 1px solid var(--gold-border);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+
+    .greeting-card {
+      background: var(--navy-card);
+      color: #ffffff;
+      border-radius: 22px;
+      padding: 24px 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 12px 30px rgba(19, 36, 58, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .greeting-card::before {
+      content: "";
+      position: absolute;
+      right: -20px;
+      top: -20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 154, 61, 0.25) 0%, rgba(212, 154, 61, 0) 70%);
+      pointer-events: none;
+    }
+
+    .greeting-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .greeting-desc {
+      font-size: 15px;
+      color: #f0f4f9;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    .content-box {
+      background: var(--surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--navy-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-desc {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.55;
+    }
+
+    .home-banner {
+      background: var(--card-subtle);
+      border: 1px solid var(--border-color);
+      border-left: 5px solid var(--gold-accent);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 12px;
+      font-size: 15px;
+      color: var(--text-main);
+      line-height: 1.55;
+    }
+
+    .subjects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .subject-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .subject-card:hover {
+      border-color: var(--gold-border);
+      background: #faf7f2;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .subject-card:active {
+      transform: scale(0.985);
+    }
+
+    .subject-card.active-subject {
+      background: var(--gold-soft);
+      border-color: var(--gold-border);
+      border-width: 2px;
+    }
+
+    .subject-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .subject-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--card-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      border: 1px solid var(--border-color);
+    }
+
+    .active-subject .subject-icon-box {
+      background: #ffffff;
+      border-color: var(--gold-border);
+    }
+
+    .subject-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .subject-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .subject-order {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .subject-tag {
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .tag-open {
+      background: var(--navy-main);
+      color: #ffffff;
+    }
+
+    .tag-soon {
+      background: var(--card-subtle);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+
+    .back-nav-btn {
+      background: var(--card-subtle);
+      color: var(--navy-main);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .topic-item {
+      background: var(--surface);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .topic-item:hover {
+      border-color: var(--gold-accent);
+      background: var(--gold-soft);
+    }
+
+    .topic-left h4 {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--navy-main);
+      margin-bottom: 4px;
+    }
+
+    .topic-left p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .q-card {
+      background: var(--card-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .q-badge {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .q-text {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .opt-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: all 0.15s ease;
+      line-height: 1.45;
+    }
+
+    .opt-btn:hover {
+      background: #faf5ed;
+      border-color: var(--gold-border);
+    }
+
+    .opt-btn.correct {
+      background: #e7f7ed !important;
+      color: #166534 !important;
+      border-color: #86efac !important;
+      font-weight: 700;
+    }
+
+    .opt-btn.wrong {
+      background: #fef2f2 !important;
+      color: #991b1b !important;
+      border-color: #fca5a5 !important;
+      font-weight: 700;
+    }
+
+    .exp-box {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      font-size: 13.5px;
+      color: #452a05;
+      line-height: 1.5;
+    }
+
+    .bottom-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--surface);
+      border-top: 1.5px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 10px 10px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+      z-index: 100;
+    }
+
+    .nav-link {
+      flex: 1;
+      max-width: 100px;
+      background: transparent;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 6px 4px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link svg {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-link span {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .nav-link.active {
+      background: var(--gold-soft);
+      color: var(--navy-main);
+    }
+
+    .nav-link.active svg {
+      transform: translateY(-2px);
+      stroke: var(--navy-main);
+    }
+
+    .tab-section {
+      display: none;
+    }
+
+    .tab-section.active-tab {
+      display: block;
+    }
   </style>
 </head>
 <body>
-  <div class="hero" style="max-width:600px;margin:0 auto 12px;">
-    <h2 id="greet" style="margin:0 0 6px;">Xush kelibsiz, Ulug'bek!</h2>
-    <p style="margin:0;font-size:13px;">Bizning Mizon ta'limda attestatsiya, milliy sertifikat va oliy o‘quv yurtiga tayyorgarlik ko‘rish uchun barcha qulayliklar yaratilgan.</p>
-    <button class="btn" onclick="showPage('subjects')">Fanlar</button>
-    <button class="btn btn-light" onclick="showPage('rating')">Reyting</button>
-    <button class="btn btn-light" onclick="showPage('profile')">Profil</button>
+
+  <div class="container">
+    <header class="header-bar">
+      <div class="brand-group">
+        <div class="brand-icon">M</div>
+        <div class="brand-text">
+          <h1>MIZON TA'LIM</h1>
+          <p>O'quv va tayyorgarlik maskani</p>
+        </div>
+      </div>
+      <div class="status-badge" id="currentTabLabel">Bosh sahifa</div>
+    </header>
+
+    <section class="greeting-card">
+      <h2 class="greeting-title" id="userGreeting">Xush kelibsiz, Ulug'bek!</h2>
+      <p class="greeting-desc">
+        Bizning Mizon ta'limda attestatsiya, milliy sertifikat va oliy o'quv yurtiga tayyorgarlik ko'rish jarayonini tartibli boshlashingiz mumkin.
+      </p>
+    </section>
+
+    <!-- 1. BOSH SAHIFA -->
+    <div id="tab-home" class="tab-section active-tab">
+      <div class="content-box">
+        <div class="section-title">
+          <span>🏛️</span>
+          <span>Bosh sahifa</span>
+        </div>
+        <p class="section-desc">
+          Mizon ta'lim interaktiv platformasiga xush kelibsiz. Maktab fanlari bo'yicha attestatsiya, milliy sertifikat va kirish imtihonlariga eng sifatli testlar to'plami jamlangan.
+        </p>
+        <div class="home-banner">
+          👉 Testlarni boshlash uchun quyidagi <b>«Fanlar»</b> bo'limiga o'ting va o'zingizga kerakli fanni tanlang.
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. FANLAR (18 TA FAN) -->
+    <div id="tab-subjects" class="tab-section">
+      <div class="content-box" id="subjectsListView">
+        <div class="section-title">
+          <span>📚</span>
+          <span>Maktab fanlari</span>
+        </div>
+        <p class="section-desc">
+          Tarix fani 1-o'rinda, qolgan fanlar alifbo tartibida joylashtirilgan. O'rganishni boshlash uchun fanni tanlang:
+        </p>
+
+        <div class="subjects-list">
+          <div class="subject-card active-subject" onclick="openSubjectTopics('tarix')">
+            <div class="subject-info">
+              <div class="subject-icon-box">📜</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">1. Tarix</span>
+                <span class="subject-order">6-sinf Qadimgi dunyo tarixi</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-open">Testlar tayyor</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">🌿</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">2. Biologiya</span>
+                <span class="subject-order">O'simliklar, hayvonot va anatomiya</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">✏️</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">3. Boshlang'ich ta'lim</span>
+                <span class="subject-order">1–4-sinf metodikasi va darsliklari</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">⚖️</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">4. Davlat va huquq asoslari</span>
+                <span class="subject-order">Konstitutsiya va qonunchilik</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">⚡</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">5. Fizika</span>
+                <span class="subject-order">Mexanika, termodinamika va optika</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">🌍</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">6. Geografiya</span>
+                <span class="subject-order">Materiklar, tabiiy va iqtisodiy xarita</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">💻</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">7. Informatika va axborot texnologiyalari</span>
+                <span class="subject-order">Algoritmlar va IT savodxonlik</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">🇬🇧</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">8. Ingliz tili</span>
+                <span class="subject-order">Grammar, Vocabulary & Reading</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">📊</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">9. Iqtisodiy bilim asoslari</span>
+                <span class="subject-order">Moliya, bozor va tadbirkorlik</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">⚽</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">10. Jismoniy tarbiya</span>
+                <span class="subject-order">Sport me'yorlari va sog'lom turmush</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">🧪</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">11. Kimyo</span>
+                <span class="subject-order">Anorganik va organik kimyo</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">📐</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">12. Matematika</span>
+                <span class="subject-order">Algebra va geometriya</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">🎵</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">13. Musiqa madaniyati</span>
+                <span class="subject-order">Musiqa nazariyasi va xalq kuylari</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">📖</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">14. Ona tili va adabiyot</span>
+                <span class="subject-order">Grammatika, adabiy tahlil va mumtoz asarlar</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">🇷🇺</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">15. Rus tili</span>
+                <span class="subject-order">Русский язык и литература</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">🤝</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">16. Tarbiya</span>
+                <span class="subject-order">Odob-axloq va ma'naviyat asoslari</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">🎨</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">17. Tasviriy san'at va chizmachilik</span>
+                <span class="subject-order">Rangtasvir, kompozitsiya va chizma</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+
+          <div class="subject-card">
+            <div class="subject-info">
+              <div class="subject-icon-box">🛠️</div>
+              <div class="subject-title-wrap">
+                <span class="subject-name">18. Texnologiya</span>
+                <span class="subject-order">Mehnat ta'limi va amaliy ko'nikmalar</span>
+              </div>
+            </div>
+            <span class="subject-tag tag-soon">Tez kunda</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TARIX MAVZULARI -->
+      <div class="content-box" id="historyTopicsView" style="display:none;">
+        <button class="back-nav-btn" onclick="backToSubjectsList()">← Fanlar ro'yxatiga qaytish</button>
+        <div class="section-title">
+          <span>📜</span>
+          <span>6-sinf Qadimgi dunyo tarixi</span>
+        </div>
+        <p class="section-desc">Mavzuni tanlang va bilimingizni sinab ko'ring:</p>
+
+        <div class="topic-item" onclick="launchQuiz('kirish')">
+          <div class="topic-left">
+            <h4>KIRISH. Qadimgi dunyo tarixiga kirish</h4>
+            <p>5–6-betlar • 5 ta namunaviy test</p>
+          </div>
+          <span class="subject-tag tag-open">Boshlash</span>
+        </div>
+
+        <div class="topic-item" onclick="launchQuiz('p1')">
+          <div class="topic-left">
+            <h4>1-§. Qadimgi tarix ildizlari</h4>
+            <p>7–10-betlar • 5 ta namunaviy test</p>
+          </div>
+          <span class="subject-tag tag-open">Boshlash</span>
+        </div>
+      </div>
+
+      <!-- TEST OYNASI -->
+      <div class="content-box" id="quizPlayView" style="display:none;">
+        <button class="back-nav-btn" onclick="backToTopicsList()">← Mavzularga qaytish</button>
+        <div class="section-title" id="quizActiveTitle">Test sinovi</div>
+        <p class="section-desc">Har bir savolga to'g'ri javobni tanlang. Javob berilgach, to'g'ri javob va uning batafsil ilmiy izohi ochiladi:</p>
+        <div id="quizQuestionsWrapper"></div>
+      </div>
+    </div>
+
+    <!-- 3. REYTING -->
+    <div id="tab-rating" class="tab-section">
+      <div class="content-box">
+        <div class="section-title">
+          <span>🏆</span>
+          <span>Foydalanuvchi reytingi</span>
+        </div>
+        <p class="section-desc">
+          Testlarni yechish jarayonida to'plagan to'g'ri javoblaringiz shu yerda hisoblab boriladi:
+        </p>
+        <div class="home-banner" id="userScoreDisplay">
+          Hozircha ishlangan testlar mavjud emas. Tarix fanidan test yechishni boshlang!
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. PROFIL -->
+    <div id="tab-profile" class="tab-section">
+      <div class="content-box">
+        <div class="section-title">
+          <span>👤</span>
+          <span>Foydalanuvchi profili</span>
+        </div>
+        <p class="section-desc">Sizning shaxsiy profilingiz va hisobingiz ma'lumotlari:</p>
+
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:14px;">
+          <div style="background:var(--card-subtle); padding:14px; border-radius:12px; border:1px solid var(--border-color);">
+            <div style="font-size:13px; color:var(--text-muted);">Foydalanuvchi nomi:</div>
+            <div style="font-size:16px; font-weight:800; color:var(--navy-main);" id="profileName">Ulug'bek</div>
+          </div>
+
+          <div style="background:var(--card-subtle); padding:14px; border-radius:12px; border:1px solid var(--border-color);">
+            <div style="font-size:13px; color:var(--text-muted);">Telegram bot:</div>
+            <div style="font-size:16px; font-weight:800; color:var(--navy-main);">@tariximizon_bot</div>
+          </div>
+
+          <div style="background:var(--card-subtle); padding:14px; border-radius:12px; border:1px solid var(--border-color);">
+            <div style="font-size:13px; color:var(--text-muted);">Platforma:</div>
+            <div style="font-size:16px; font-weight:800; color:var(--navy-main);">MIZON TA'LIM</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div id="page-home" class="box">
-    <h3>Bosh sahifa</h3>
-    <p>Mizon ta'lim platformasiga xush kelibsiz. Test boshlash uchun <b>Fanlar</b> tugmasini bosing.</p>
-  </div>
+  <!-- PASTKI FAQAT 4 TALI NAVIGATSIYA -->
+  <nav class="bottom-bar">
+    <button class="nav-link active" id="btn-home" onclick="navTo('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10.5L12 3l9 7.5"/>
+        <path d="M5 9.5V20h14V9.5"/>
+      </svg>
+      <span>Bosh</span>
+    </button>
 
-  <div id="page-subjects" class="box" style="display:none;">
-    <h3>Maktab fanlari</h3>
-    <div class="item" onclick="showPage('history')"><span>Tarix (6-sinf)</span><span>Testlar →</span></div>
-    <div class="item"><span>Biologiya</span><span>Fan</span></div>
-    <div class="item"><span>Davlat va huquq asoslari</span><span>Fan</span></div>
-    <div class="item"><span>Fizika</span><span>Fan</span></div>
-    <div class="item"><span>Geografiya</span><span>Fan</span></div>
-    <div class="item"><span>Informatika va axborot texnologiyalari</span><span>Fan</span></div>
-    <div class="item"><span>Ingliz tili</span><span>Fan</span></div>
-    <div class="item"><span>Jismoniy tarbiya</span><span>Fan</span></div>
-    <div class="item"><span>Kimyo</span><span>Fan</span></div>
-    <div class="item"><span>Matematika</span><span>Fan</span></div>
-    <div class="item"><span>Musiqa madaniyati</span><span>Fan</span></div>
-    <div class="item"><span>Ona tili va adabiyot</span><span>Fan</span></div>
-    <div class="item"><span>Rus tili</span><span>Fan</span></div>
-    <div class="item"><span>Tasviriy san’at va chizmachilik</span><span>Fan</span></div>
-    <div class="item"><span>Texnologiya</span><span>Fan</span></div>
-  </div>
+    <button class="nav-link" id="btn-subjects" onclick="navTo('subjects')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      </svg>
+      <span>Fanlar</span>
+    </button>
 
-  <div id="page-history" class="box" style="display:none;">
-    <button class="btn btn-light" onclick="showPage('subjects')">← Fanlar</button>
-    <h3>6-sinf Qadimgi dunyo tarixi</h3>
-    <div class="item" onclick="openQuiz('kirish')"><span>KIRISH (5–6-betlar)</span><span>Boshlash</span></div>
-    <div class="item" onclick="openQuiz('p1')"><span>1-§. Qadimgi tarix ildizlari</span><span>Boshlash</span></div>
-  </div>
+    <button class="nav-link" id="btn-rating" onclick="navTo('rating')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3"/>
+        <path d="M18 9h3a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-3"/>
+        <path d="M4 22h16"/>
+        <path d="M10 14.66V17c0 .55-.45 1-1 1H7c-.55 0-1 .45-1 1v3h12v-3c0-.55-.45-1-1-1h-2c-.55 0-1-.45-1-1v-2.34"/>
+        <path d="M6 3h12v7a6 6 0 0 1-12 0V3z"/>
+      </svg>
+      <span>Reyting</span>
+    </button>
 
-  <div id="page-quiz" class="box" style="display:none;">
-    <button class="btn btn-light" onclick="showPage('history')">← Mavzular</button>
-    <h3 id="qTitle">Test</h3>
-    <div id="qList"></div>
-  </div>
-
-  <div id="page-rating" class="box" style="display:none;">
-    <h3>Reyting</h3>
-    <p id="scoreText">Hali test ishlanmagan.</p>
-  </div>
-
-  <div id="page-profile" class="box" style="display:none;">
-    <h3>Profil</h3>
-    <p id="profText">Foydalanuvchi: Ulug'bek (@tariximizon_bot)</p>
-  </div>
-
-  <div class="nav">
-    <button onclick="showPage('home')">Bosh</button>
-    <button onclick="showPage('subjects')">Fanlar</button>
-    <button onclick="showPage('rating')">Reyting</button>
-    <button onclick="showPage('profile')">Profil</button>
-  </div>
+    <button class="nav-link" id="btn-profile" onclick="navTo('profile')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <span>Profil</span>
+    </button>
+  </nav>
 
   <script>
-    var score = 0;
-    var quizBank = {
+    const testBank = {
       kirish: {
         title: "KIRISH. Qadimgi dunyo tarixiga kirish",
         items: [
           {
-            q: "1. Qadimgi dunyo tarixi qaysi voqeagacha bo'lgan davrni o'z ichiga oladi?",
-            opts: ["A) Milodiy 476-yilda G'arbiy Rim qulaguniga qadar", "B) Milodiy 395-yilda Rim bo'linguniga qadar", "C) Milodiy 330-yilda Konstantinopol poytaxt bo'lguniga qadar", "D) Mil. avv. 330-yilda Ahamoniylar tugaguniga qadar"],
+            q: "1. Tarix fanida qadimgi dunyo tarixi qaysi voqeaga qadar bo'lgan davrni o'z ichiga oladi?",
+            opts: [
+              "A) Milodiy 476-yilda G'arbiy Rim imperiyasi qulaguniga qadar",
+              "B) Milodiy 395-yilda Rim imperiyasi ikkiga bo'linguniga qadar",
+              "C) Milodiy 330-yilda Konstantinopol poytaxt bo'lguniga qadar",
+              "D) Miloddan avvalgi 330-yilda Ahamoniylar davlati tugaguniga qadar"
+            ],
             ans: 0,
-            exp: "To'g'ri javob: A. Qadimgi dunyo tarixi milodiy 476-yilda G'arbiy Rim imperiyasi qulaguniga qadar davom etgan."
+            exp: "To'g'ri javob: A. Yer yuzida odam paydo bo'lganidan to milodiy 476-yilda G'arbiy Rim imperiyasi qulaguniga qadar kechgan voqealar qadimgi dunyo tarixi deb ataladi."
           },
           {
-            q: "2. Qadimgi dunyo tarixi qaysi ikki asosiy manbada aks etgan?",
-            opts: ["A) Geografik va biologik", "B) Arxeologik va yozma", "C) Og'zaki va statistik", "D) Me'moriy va ilmiy"],
+            q: "2. Qadimgi dunyo tarixi qaysi ikki asosiy turdagi manbalarda o'z aksini topgan?",
+            opts: [
+              "A) Geografik va biologik manbalarda",
+              "B) Arxeologik va yozma manbalarda",
+              "C) Og'zaki va kinematografik manbalarda",
+              "D) Me'moriy va statistik manbalarda"
+            ],
             ans: 1,
-            exp: "To'g'ri javob: B. Qadimgi dunyo tarixi arxeologik va yozma manbalarda o'z aksini topgan."
+            exp: "To'g'ri javob: B. Darslikka ko'ra, qadimgi dunyo tarixi turli-tuman arxeologik va yozma manbalarda o'z aksini topgan."
+          },
+          {
+            q: "3. Darslikda ta'kidlanishicha, tarix bizni hamma narsaga nima orqali erishishga o'rgatadi?",
+            opts: [
+              "A) Zo'ravonlik va harbiy ustunlik orqali",
+              "B) Faqat sanalar va shohlar nomini yod olish orqali",
+              "C) O'zaro murosa va boshqalarga hurmat bilan munosabatda bo'lish orqali",
+              "D) Boshqa xalqlardan ajralib yashash orqali"
+            ],
+            ans: 2,
+            exp: "To'g'ri javob: C. Darslik kirish qismida tarix bizni zo'ravonlikka emas, balki o'zaro murosa va boshqalarga hurmat bilan munosabatda bo'lishga o'rgatishi qayd etilgan."
+          },
+          {
+            q: "4. Insoniyat tarixni birinchi navbatda nima uchun o'rganishi kerakligi darslikda alohida uqtirilgan?",
+            opts: [
+              "A) Faqat qadimgi tillarni o'zlashtirish uchun",
+              "B) Turli sulolalar ro'yxatini tuzish uchun",
+              "C) Faqat janglar sanasini eslab qolish uchun",
+              "D) Ajdodlarning bebaho yaratuvchanlik tajribasi uchun"
+            ],
+            ans: 3,
+            exp: "To'g'ri javob: D. Tarixni sana va nomlar uchun emas, balki ajdodlarning bebaho yaratuvchanlik tajribasi uchun o'rganish kerak."
+          },
+          {
+            q: "5. Tarixiy davrlarning to'g'ri xronologik ketma-ketligini aniqlang.",
+            opts: [
+              "A) O'rta asrlar → Qadimgi dunyo → Yangi tarix → Eng yangi tarix",
+              "B) Qadimgi dunyo → O'rta asrlar → Yangi tarix → Eng yangi tarix",
+              "C) Qadimgi dunyo → Yangi tarix → O'rta asrlar → Eng yangi tarix",
+              "D) Eng yangi tarix → Yangi tarix → O'rta asrlar → Qadimgi dunyo"
+            ],
+            ans: 1,
+            exp: "To'g'ri javob: B. Insoniyat tarixi xronologik tartibda Qadimgi dunyo, O'rta asrlar, Yangi tarix va Eng yangi tarix davrlariga bo'linadi."
           }
         ]
       },
@@ -106,74 +884,186 @@
         title: "1-§. Qadimgi tarix ildizlari",
         items: [
           {
-            q: "1. Qadimgi manzilgohlarda qazishma olib boradigan olimlar kimlar?",
-            opts: ["A) Arxeologlar", "B) Etnograflar", "C) Geograflar", "D) Lingvistlar"],
+            q: "1. Qadim zamonlarda odamlar yashagan manzilgohlar va turarjoylarda qazishma ishlarini olib boradigan olimlar kimlar?",
+            opts: [
+              "A) Arxeologlar",
+              "B) Etnograflar",
+              "C) Geograflar",
+              "D) Lingvistlar"
+            ],
             ans: 0,
-            exp: "To'g'ri javob: A. Arxeologlar qadimgi manzilgoh va turarjoylarda qazishma ishlari olib boradi."
+            exp: "To'g'ri javob: A. Arxeologlar qadimgi odamlar yashagan manzilgohlar va turarjoylarda qazishma ishlarini amalga oshiradilar."
           },
           {
-            q: "2. O'rta Osiyo tarixi bo'yicha eng qadimgi yozma manba qaysi?",
-            opts: ["A) «Tarix»", "B) Behistun bitiklari", "C) «Geografiya»", "D) «Avesto»"],
+            q: "2. Qadimgi odamlarning suyak qoldiqlarini tekshirib, ularning tashqi qiyofasini tiklaydigan olimlar qanday ataladi?",
+            opts: [
+              "A) Arxeologlar",
+              "B) Antropologlar",
+              "C) Etnograflar",
+              "D) Numizmatlar"
+            ],
+            ans: 1,
+            exp: "To'g'ri javob: B. Antropologlar qadimgi odamlarning skelet va bosh chanoqlarini o'rganib, ularning tashqi ko'rinishini tiklaydilar."
+          },
+          {
+            q: "3. O'rta Osiyo tarixi bo'yicha eng qadimgi yozma manba qaysi javobda to'g'ri ko'rsatilgan?",
+            opts: [
+              "A) «Tarix» kitobi",
+              "B) Behistun qoyasi yozuvlari",
+              "C) «Geografiya» asari",
+              "D) «Avesto»"
+            ],
             ans: 3,
-            exp: "To'g'ri javob: D. «Avesto» O'rta Osiyo tarixi bo'yicha eng qadimgi yozma manbadir."
+            exp: "To'g'ri javob: D. «Avesto» O'rta Osiyo tarixi bo'yicha eng qadimgi yozma manba hisoblanadi."
+          },
+          {
+            q: "4. Erondagi Behistun qoyasi yozuvlari qaysi fors shohining buyrug'i bilan o'yib yozilgan?",
+            opts: [
+              "A) Doro I",
+              "B) Kir II",
+              "C) Kambiz II",
+              "D) Kserks"
+            ],
+            ans: 0,
+            exp: "To'g'ri javob: A. Behistun qoyasi yozuvlari fors shohi Doro I buyrug'i bilan uch tilda o'yib yozilgan."
+          },
+          {
+            q: "5. Tosh davri bosqichlarining to'g'ri xronologik ketma-ketligini belgilang.",
+            opts: [
+              "A) Paleolit → Mezolit → Neolit → Eneolit",
+              "B) Mezolit → Paleolit → Neolit → Eneolit",
+              "C) Paleolit → Neolit → Mezolit → Eneolit",
+              "D) Eneolit → Neolit → Mezolit → Paleolit"
+            ],
+            ans: 0,
+            exp: "To'g'ri javob: A. Tosh davri xronologik tartibda paleolit (qadimgi), mezolit (o'rta), neolit (yangi) va eneolit (mis-tosh) bosqichlaridan iborat."
           }
         ]
       }
     };
 
-    function showPage(name) {
-      var pages = ["home", "subjects", "history", "quiz", "rating", "profile"];
-      for (var i = 0; i < pages.length; i++) {
-        document.getElementById("page-" + pages[i]).style.display = (pages[i] === name) ? "block" : "none";
+    let userCorrectScore = 0;
+
+    function navTo(tab) {
+      document.querySelectorAll('.tab-section').forEach(el => el.classList.remove('active-tab'));
+      document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+
+      const targetTab = document.getElementById('tab-' + tab);
+      const targetBtn = document.getElementById('btn-' + tab);
+      if (targetTab) targetTab.classList.add('active-tab');
+      if (targetBtn) targetBtn.classList.add('active');
+
+      const label = document.getElementById('currentTabLabel');
+      if (tab === 'home') label.innerText = "Bosh sahifa";
+      if (tab === 'subjects') {
+        label.innerText = "Fanlar";
+        backToSubjectsList();
+      }
+      if (tab === 'rating') label.innerText = "Reyting";
+      if (tab === 'profile') label.innerText = "Profil";
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openSubjectTopics(subjectKey) {
+      if (subjectKey === 'tarix') {
+        document.getElementById('subjectsListView').style.display = 'none';
+        document.getElementById('quizPlayView').style.display = 'none';
+        document.getElementById('historyTopicsView').style.display = 'block';
+        document.getElementById('currentTabLabel').innerText = "Tarix mavzulari";
       }
     }
 
-    function openQuiz(key) {
-      var qData = quizBank[key];
-      document.getElementById("qTitle").innerText = qData.title;
-      var list = document.getElementById("qList");
-      list.innerHTML = "";
-
-      for (var i = 0; i < qData.items.length; i++) {
-        var it = qData.items[i];
-        var wrap = document.createElement("div");
-        wrap.style.marginBottom = "14px";
-        var h = "<p><b>" + it.q + "</b></p>";
-        for (var j = 0; j < it.opts.length; j++) {
-          h += "<button class='opt' onclick='answer(this," + j + "," + it.ans + ",\"e" + i + "\")'>" + it.opts[j] + "</button>";
-        }
-        h += "<div id='e" + i + "' class='exp'>" + it.exp + "</div>";
-        wrap.innerHTML = h;
-        list.appendChild(wrap);
-      }
-      showPage("quiz");
+    function backToSubjectsList() {
+      document.getElementById('historyTopicsView').style.display = 'none';
+      document.getElementById('quizPlayView').style.display = 'none';
+      document.getElementById('subjectsListView').style.display = 'block';
+      document.getElementById('currentTabLabel').innerText = "Fanlar";
     }
 
-    function answer(btn, chosen, right, expId) {
-      var all = btn.parentElement.querySelectorAll(".opt");
-      for (var i = 0; i < all.length; i++) all[i].disabled = true;
-      if (chosen === right) {
-        btn.classList.add("ok");
-        score++;
+    function backToTopicsList() {
+      document.getElementById('quizPlayView').style.display = 'none';
+      document.getElementById('historyTopicsView').style.display = 'block';
+      document.getElementById('currentTabLabel').innerText = "Tarix mavzulari";
+    }
+
+    function launchQuiz(key) {
+      const quizData = testBank[key];
+      if (!quizData) return;
+
+      document.getElementById('historyTopicsView').style.display = 'none';
+      document.getElementById('quizPlayView').style.display = 'block';
+      document.getElementById('quizActiveTitle').innerText = quizData.title;
+      document.getElementById('currentTabLabel').innerText = "Test yechish";
+
+      const wrapper = document.getElementById('quizQuestionsWrapper');
+      wrapper.innerHTML = "";
+
+      quizData.items.forEach((item, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'q-card';
+
+        let optionsHtml = "";
+        item.opts.forEach((optText, optIdx) => {
+          optionsHtml += `
+            <button class="opt-btn" onclick="submitOption(this, ${qIdx}, ${optIdx}, ${item.ans}, 'exp-id-${qIdx}')">
+              ${optText}
+            </button>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="q-badge">Savol ${qIdx + 1} / ${quizData.items.length}</div>
+          <div class="q-text">${item.q}</div>
+          <div class="options-group">${optionsHtml}</div>
+          <div class="exp-box" id="exp-id-${qIdx}">💡 ${item.exp}</div>
+        `;
+        wrapper.appendChild(card);
+      });
+
+      window.scrollTo({ top: 150, behavior: 'smooth' });
+    }
+
+    function submitOption(btn, qIdx, chosenIdx, rightIdx, expId) {
+      const parent = btn.parentElement;
+      const allButtons = parent.querySelectorAll('.opt-btn');
+
+      allButtons.forEach(b => b.disabled = true);
+
+      if (chosenIdx === rightIdx) {
+        btn.classList.add('correct');
+        userCorrectScore++;
       } else {
-        btn.classList.add("bad");
-        all[right].classList.add("ok");
+        btn.classList.add('wrong');
+        allButtons[rightIdx].classList.add('correct');
       }
-      document.getElementById(expId).style.display = "block";
-      document.getElementById("scoreText").innerText = "To'g'ri javoblar: " + score + " ta";
+
+      const expElement = document.getElementById(expId);
+      if (expElement) {
+        expElement.style.display = 'block';
+      }
+
+      document.getElementById('userScoreDisplay').innerHTML = `
+        🎉 <b>Siz to'plagan natija:</b> ${userCorrectScore} ta to'g'ri javob!<br>
+        <span style="font-size:13px; color:var(--text-muted);">Mavzularni ishlashda davom eting va ballingizni oshiring.</span>
+      `;
     }
 
     try {
       if (window.Telegram && window.Telegram.WebApp) {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
-        var u = window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user;
-        if (u && u.first_name) {
-          document.getElementById("greet").innerText = "Xush kelibsiz, " + u.first_name + "!";
-          document.getElementById("profText").innerText = "Foydalanuvchi: " + u.first_name + " (ID: " + u.id + ")";
+
+        const tgUser = window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user;
+        if (tgUser && tgUser.first_name) {
+          const name = tgUser.first_name.trim();
+          document.getElementById('userGreeting').innerText = `Xush kelibsiz, ${name}!`;
+          document.getElementById('profileName').innerText = name;
         }
       }
-    } catch (err) {}
+    } catch (e) {
+      console.log("Telegram WebApp yuklanmadi");
+    }
   </script>
 </body>
 </html>
